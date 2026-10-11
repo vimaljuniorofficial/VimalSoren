@@ -2426,11 +2426,11 @@ const rn = () => {
                                 children: [F.jsx("h1", {
                                     children: "Hi!"
                                 }), F.jsx("p", {
-                                    children: `I'm Vimal Soren, a frontend developer passionate about creative design and modern web experiences.`
+                                    children: `Hi, I'm Vimal Soren, a passionate frontend developer and creative designer who loves building modern digital experiences. I enjoy combining creativity, design, and technology to bring unique ideas to life.`
                                 }), F.jsx("p", {
-                                    children: `I create responsive, interactive, and visually appealing websites using HTML, CSS, and JavaScript.`
+                                    children: `I build responsive, interactive websites using HTML, CSS, and JavaScript with clean designs and smooth animations.`
                                 }), F.jsx("p", {
-                                    children: `I love transforming ideas into reality through code, creativity, and continuous learning.`
+                                    children: `I turn creative ideas into reality through code, continuous learning, and innovative digital experiences.`
                                 }), F.jsx("p", {
                                     children: "Let's keep scrolling to discover the rest :)"
                                 })]
@@ -2441,11 +2441,11 @@ const rn = () => {
                                 children: [F.jsx("h1", {
                                     children: "Hi!"
                                 }), F.jsx("p", {
-                                    children: `I'm Vimal Soren, a frontend developer passionate about creative design and modern web experiences.`
+                                    children: `Hi, I'm Vimal Soren, a passionate frontend developer and creative designer who loves building modern digital experiences. I enjoy combining creativity, design, and technology to bring unique ideas to life.`
                                 }), F.jsx("p", {
-                                    children: `I create responsive, interactive, and visually appealing websites using HTML, CSS, and JavaScript.`
+                                    children: `I build responsive, interactive websites using HTML, CSS, and JavaScript with clean designs and smooth animations.`
                                 }), F.jsx("p", {
-                                    children: `I love transforming ideas into reality through code, creativity, and continuous learning.`
+                                    children: `I turn creative ideas into reality through code, continuous learning, and innovative digital experiences.`
                                 }), F.jsx("p", {
                                     children: "Let's keep scrolling to discover the rest :)"
                                 })]
