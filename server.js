@@ -6,13 +6,21 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
 
 const publicDir = path.join(__dirname, 'public');
 
-// Custom MIME types and caching headers
+// Prevent browser and proxy caching so all updates are visible immediately
 app.use((req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+
+  if (req.path === '/' || req.path === '/index.html') {
+    res.setHeader('Clear-Site-Data', '"cache"');
+  }
+
   if (req.path.endsWith('.glb')) {
     res.setHeader('Content-Type', 'model/gltf-binary');
   } else if (req.path.endsWith('.gltf')) {
@@ -21,18 +29,24 @@ app.use((req, res, next) => {
     res.setHeader('Content-Type', 'audio/mp4');
   }
 
-  if (req.path.startsWith('/assets/')) {
-    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-  }
-
   next();
 });
 
-// Serve static assets from public directory
-app.use(express.static(publicDir));
+// Serve static assets from public directory with no caching
+app.use(express.static(publicDir, {
+  etag: false,
+  lastModified: false,
+  setHeaders: (res) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+  }
+}));
 
 // Fallback to index.html for client-side routing
 app.use((req, res) => {
+  res.setHeader('Clear-Site-Data', '"cache"');
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
   res.sendFile(path.join(publicDir, 'index.html'));
 });
 

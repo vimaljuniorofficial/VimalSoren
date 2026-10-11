@@ -2426,11 +2426,11 @@ const rn = () => {
                                 children: [F.jsx("h1", {
                                     children: "Hi!"
                                 }), F.jsx("p", {
-                                    children: `Hi, I'm Vimal Soren, a passionate frontend developer and creative designer who loves turning ideas into beautiful, interactive digital experiences. I specialize in creating modern, responsive, and user-friendly websites using HTML, CSS, and JavaScript. I enjoy exploring new technologies, experimenting with animations, and building unique web experiences that combine creativity with functionality.`
+                                    children: `I'm Vimal Soren, a frontend developer passionate about creative design and modern web experiences.`
                                 }), F.jsx("p", {
-                                    children: `For me, coding is more than writing code—it's a way to bring imagination to life. I'm always learning, improving my skills, and pushing creative boundaries to build something extraordinary.`
+                                    children: `I create responsive, interactive, and visually appealing websites using HTML, CSS, and JavaScript.`
                                 }), F.jsx("p", {
-                                    children: `My goal is simple: Create digital experiences that inspire, engage, and make a difference.`
+                                    children: `I love transforming ideas into reality through code, creativity, and continuous learning.`
                                 }), F.jsx("p", {
                                     children: "Let's keep scrolling to discover the rest :)"
                                 })]
@@ -2441,11 +2441,11 @@ const rn = () => {
                                 children: [F.jsx("h1", {
                                     children: "Hi!"
                                 }), F.jsx("p", {
-                                    children: `Hi, I'm Vimal Soren, a passionate frontend developer and creative designer who loves turning ideas into beautiful, interactive digital experiences. I specialize in creating modern, responsive, and user-friendly websites using HTML, CSS, and JavaScript. I enjoy exploring new technologies, experimenting with animations, and building unique web experiences that combine creativity with functionality.`
+                                    children: `I'm Vimal Soren, a frontend developer passionate about creative design and modern web experiences.`
                                 }), F.jsx("p", {
-                                    children: `For me, coding is more than writing code—it's a way to bring imagination to life. I'm always learning, improving my skills, and pushing creative boundaries to build something extraordinary.`
+                                    children: `I create responsive, interactive, and visually appealing websites using HTML, CSS, and JavaScript.`
                                 }), F.jsx("p", {
-                                    children: `My goal is simple: Create digital experiences that inspire, engage, and make a difference.`
+                                    children: `I love transforming ideas into reality through code, creativity, and continuous learning.`
                                 }), F.jsx("p", {
                                     children: "Let's keep scrolling to discover the rest :)"
                                 })]

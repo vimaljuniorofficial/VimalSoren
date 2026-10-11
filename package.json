@@ -2,7 +2,7 @@
   "name": "vimal-soren-portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "Portfolio of Vimal Soren - Web Engineer & Creative Designer.",
+  "description": "Portfolio of Vimal Soren - Frontend Developer.",
   "type": "module",
   "scripts": {
     "dev": "node server.js",

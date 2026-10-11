@@ -92,7 +92,7 @@ const y = ({
                     })
                 }), r.jsx("h2", {
                     children: r.jsx(y, {
-                        arrayOfString: ["frontend", "developer", "•", "designer"]
+                        arrayOfString: ["frontend", "developer"]
                     })
                 })]
             })
