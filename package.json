@@ -1,9 +1,15 @@
 {
-  "name": "sebastien-lempens-portfolio",
+  "name": "vimal-soren-portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "Static portfolio site (pre-built). Deploys to Vercel from the public/ folder.",
+  "description": "Portfolio of Vimal Soren - Web Engineer & Creative Designer.",
+  "type": "module",
   "scripts": {
-    "dev": "npx --yes serve public -l 3000"
+    "dev": "node server.js",
+    "build": "node -e \"console.log('Build completed successfully')\"",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.3.0"
   }
 }
