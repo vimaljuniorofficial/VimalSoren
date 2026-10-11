@@ -1,0 +1,9 @@
+{
+  "name": "sebastien-lempens-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static portfolio site (pre-built). Deploys to Vercel from the public/ folder.",
+  "scripts": {
+    "dev": "npx --yes serve public -l 3000"
+  }
+}
