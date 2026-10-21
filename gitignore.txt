@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 bun.lock*
+.aistudio/
 
 # Editor directories and files
 .vscode/*
