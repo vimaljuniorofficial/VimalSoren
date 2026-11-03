@@ -39,7 +39,7 @@ export default function Meta() {
             <meta name="og:description"
                 content="Vimal Soren's Personal Portfolio Website. Made with Ubuntu 20.4 (Linux) theme by Next.js and Tailwind CSS." />
             <meta name="og:image" content="images/logos/logo_1200.png" />
-            <meta name="og:url" content="http://vivek9patel.github.io/" />
+            <meta name="og:url" content="https://github.com/vimaljuniorofficial/VimalSoren" />
             <meta name="og:site_name" content="Vimal Soren Personal Portfolio" />
             <meta name="og:locale" content="en_IN" />
             <meta name="og:type" content="website" />
