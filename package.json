@@ -1,0 +1,30 @@
+{
+  "name": "vimal-soren-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "homepage": "https://github.com/vimaljuniorofficial/VimalSoren",
+  "scripts": {
+    "dev": "next dev -p 3000 -H 0.0.0.0",
+    "build": "next build",
+    "start": "next start -p 3000 -H 0.0.0.0",
+    "export": "next export"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^3.10.0",
+    "autoprefixer": "^10.4.13",
+    "expr-eval": "^2.0.2",
+    "jquery": "^3.6.3",
+    "next": "^13.1.2",
+    "postcss": "^8.4.21",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.5",
+    "react-ga4": "^2.1.0",
+    "react-onclickoutside": "^6.12.2",
+    "tailwindcss": "^3.2.4"
+  }
+}
