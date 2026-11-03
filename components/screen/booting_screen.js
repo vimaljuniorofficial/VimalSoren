@@ -10,11 +10,11 @@ function BootingScreen(props) {
                     ? <div className="bg-white rounded-full flex justify-center items-center w-10 h-10 hover:bg-gray-300"><img width="32px" height="32px" className="w-8" src="./themes/Yaru/status/power-button.svg" alt="Power Button" /></div>
                     : <img width="40px" height="40px" className={" w-10 " + (props.visible ? " animate-spin " : "")} src="./themes/Yaru/status/process-working-symbolic.svg" alt="Ubuntu Process Symbol" />)}
             </div>
-            <img width="200px" height="100px" className="md:w-1/5 w-1/2" src="./themes/Yaru/status/ubuntu_white_hex.svg" alt="Ubuntu Name" />
+            <img width="200px" height="100px" className="md:w-1/5 w-1/2" src="./themes/Yaru/status/ubuntu_white_hex.svg" alt="Vimal" />
             <div className="text-white mb-4">
-                <a className="underline" href="https://www.linkedin.com/in/vivek9patel/" rel="noreferrer noopener" target="_blank">linkedin</a>
+                <a className="underline" href="https://linkedin.com/vimaljunior" rel="noreferrer noopener" target="_blank">linkedin</a>
                 <span className="font-bold mx-1">|</span>
-                <a href="https://github.com/vimaljuniorofficial/VimalSoren" rel="noreferrer noopener" target="_blank" className="underline">github</a>
+                <a href="https://github.com/vimaljuniorofficial" rel="noreferrer noopener" target="_blank" className="underline">github</a>
             </div>
         </div>
     )
