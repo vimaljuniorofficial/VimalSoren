@@ -9,10 +9,10 @@ export default function Meta() {
             <meta charSet="utf-8" />
             <meta name="title" content="Vimal Soren Portfolio - ITI Fitter | Computer Skills" />
             <meta name="description"
-                content="Vimal Soren's Personal Portfolio Website. Made with Ubuntu 20.4 (Linux) theme by Next.js and Tailwind CSS." />
+                content="Vimal Soren's Personal Portfolio Website. Made with Vimal (Linux theme) by Next.js and Tailwind CSS." />
             <meta name="author" content="Vimal Soren" />
             <meta name="keywords"
-                content="ubuntu portfolio, vimal soren protfolio,vimal soren computer, vimal soren, vimal soren ubuntu portfolio" />
+                content="vimal portfolio, vimal soren portfolio, vimal soren computer, vimal soren, vimal os portfolio" />
             <meta name="robots" content="index, follow" />
             <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
             <meta name="language" content="English" />
@@ -24,20 +24,20 @@ export default function Meta() {
             {/* Schema.org for Google */}
             <meta itemProp="name" content="Vimal Soren Portfolio - ITI Fitter | Computer Skills" />
             <meta itemProp="description"
-                content="Vimal Soren's Personal Portfolio Website. Made with Ubuntu 20.4 (Linux) theme by Next.js and Tailwind CSS." />
+                content="Vimal Soren's Personal Portfolio Website. Made with Vimal (Linux theme) by Next.js and Tailwind CSS." />
             <meta itemProp="image" content="images/logos/fevicon.png" />
             {/* Twitter */}
             <meta name="twitter:card" content="summary" />
             <meta name="twitter:title" content="Vimal Soren Portfolio - ITI Fitter | Computer Skills" />
             <meta name="twitter:description"
-                content="Vimal Soren's Personal Portfolio Website. Made with Ubuntu 20.4 (Linux) theme by Next.js and Tailwind CSS." />
-            <meta name="twitter:site" content="vivek9patel" />
-            <meta name="twitter:creator" content="vivek9patel" />
+                content="Vimal Soren's Personal Portfolio Website. Made with Vimal (Linux theme) by Next.js and Tailwind CSS." />
+            <meta name="twitter:site" content="vimaljunior" />
+            <meta name="twitter:creator" content="vimaljunior" />
             <meta name="twitter:image:src" content="images/logos/logo_1024.png" />
             {/* Open Graph general (Facebook, Pinterest & Google+) */}
             <meta name="og:title" content="Vimal Soren Portfolio - ITI Fitter | Computer Skills" />
             <meta name="og:description"
-                content="Vimal Soren's Personal Portfolio Website. Made with Ubuntu 20.4 (Linux) theme by Next.js and Tailwind CSS." />
+                content="Vimal Soren's Personal Portfolio Website. Made with Vimal (Linux theme) by Next.js and Tailwind CSS." />
             <meta name="og:image" content="images/logos/logo_1200.png" />
             <meta name="og:url" content="https://github.com/vimaljuniorofficial/VimalSoren" />
             <meta name="og:site_name" content="Vimal Soren Personal Portfolio" />
