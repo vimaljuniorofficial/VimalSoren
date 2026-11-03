@@ -95,7 +95,7 @@ export default class Ubuntu extends Component {
 			ReactGA.send({ hitType: "pageview", page: "/switch-off", title: "Custom Title" });
 			ReactGA.event({
 				category: `Screen Change`,
-				action: `Switched off the Ubuntu`
+				action: `Switched off Vimal`
 			});
 		}
 
