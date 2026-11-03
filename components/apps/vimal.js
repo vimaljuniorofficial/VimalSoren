@@ -254,11 +254,11 @@ function Skills() {
 function Projects() {
     const project_list = [
         {
-            name: "UbuntuOS Portfolio",
+            name: "Vimal Portfolio",
             date: "Apr 2021",
             link: "https://github.com/vimaljuniorofficial/VimalSoren",
             description: [
-                "Personal portfolio website of theme Ubuntu 20.04, made using NEXT.js & tailwind CSS",
+                "Personal portfolio website of theme Vimal (Linux OS), made using NEXT.js & tailwind CSS",
             ],
             domains: ["javascript", "next.js", "tailwindcss"]
         },
