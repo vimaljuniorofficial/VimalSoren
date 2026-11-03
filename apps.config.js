@@ -98,18 +98,18 @@ const apps = [
         favourite: false,
         desktop_shortcut: true,
         isExternalApp: true,
-        url: "https://github.com/vivek9patel",
+        url: "https://github.com/vimaljuniorofficial",
         screen: () => {},
     },
     {
         id: "tars",
-        title: "Ask Tars",
+        title: "Vimal",
         icon: './themes/Yaru/apps/tars.svg',
         disabled: false,
         favourite: false,
         desktop_shortcut: true,
         isExternalApp: true,
-        url: "https://www.vivek9patel.com/tars"
+        url: "https://github.com/vimaljuniorofficial"
     },
 ]
 
