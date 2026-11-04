@@ -255,7 +255,7 @@ function Projects() {
     const project_list = [
         {
             name: "Vimal Portfolio",
-            date: "Apr 2021",
+            date: "Sep 2026",
             link: "https://github.com/vimaljuniorofficial/VimalSoren",
             description: [
                 "Personal portfolio website of theme Vimal (Linux OS), made using Next.js & Tailwind CSS.",
@@ -264,7 +264,7 @@ function Projects() {
         },
         {
             name: "Vimal Photos",
-            date: "Dec 2023",
+            date: "Oct 2026",
             link: "https://github.com/vimaljuniorofficial/VimalPhotos",
             description: [
                 "Photography portfolio & image gallery showcase web application.",
