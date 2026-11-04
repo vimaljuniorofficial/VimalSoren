@@ -107,7 +107,8 @@ export default function TarsPage() {
                 <title>TARS — Vimal Soren</title>
                 <meta name="description" content="Ask TARS anything about Vimal Soren" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/themes/Yaru/apps/tars.svg" />
+                <link rel="icon" href="/images/logos/fevicon.svg" />
+                <link rel="apple-touch-icon" href="/images/logos/logo.png" />
             </Head>
 
             {/* Mouse Tracking Ring & Dot */}
