@@ -258,89 +258,18 @@ function Projects() {
             date: "Apr 2021",
             link: "https://github.com/vimaljuniorofficial/VimalSoren",
             description: [
-                "Personal portfolio website of theme Vimal (Linux OS), made using NEXT.js & tailwind CSS",
+                "Personal portfolio website of theme Vimal (Linux OS), made using Next.js & Tailwind CSS.",
             ],
             domains: ["javascript", "next.js", "tailwindcss"]
         },
         {
-            name: "Chrome Extension React Bolierplate",
-            date: "Dec 2021",
-            link: "https://github.com/vivek9patel/chrome-extension-react-boilerplate",
+            name: "Vimal Photos",
+            date: "Dec 2023",
+            link: "https://github.com/vimaljuniorofficial/VimalPhotos",
             description: [
-                "A boilerplate code to build a chrome extension with react and webpack",
+                "Photography portfolio & image gallery showcase web application.",
             ],
-            domains: ["javascript", "chrome-extension"]
-        },
-        {
-            name: "CodeConnect",
-            date: "Nov 2021",
-            link: "https://github.com/vivek9patel/CodeConnect-frontend",
-            description: [
-                "A multi-language pair-programming platform with the features of video meeting and whiteboard. Built with React.js, Tailwind CSS, Chakra UI, Express & Socket.io.",
-            ],
-            domains: ["javascript", "tailwindcss"]
-        },
-        {
-            name: "Ad Free Spotify",
-            date: "Jun 2021",
-            link: "https://github.com/vivek9patel/ad-free-spotify",
-            description: [
-                "Chrome extension to automatically mute/unmute Spotify tab when Advertisement starts and ends!",
-            ],
-            domains: ["javascript", "chrome-extension"]
-        },
-        {
-            name: "economist.com Unlocked",
-            date: "Mar 2021",
-            link: "https://github.com/vivek9patel/economist.com-unlocked",
-            description: [
-                "A chrome extension to read Paid Articles for Free & with no Ads, no subscription, no memberships!",
-            ],
-            domains: ["javascript", "chrome-extension"]
-        },
-        {
-            name: "Flutter banking app",
-            date: "Jan 2021",
-            link: "https://github.com/vivek9patel/flutter-banking-app",
-            description: [
-                "A Flutter & Firebase project for creating transactions between different Users and displaying the history of transactions done by all.",
-            ],
-            domains: ["flutter", "firestore", "dart", "firebase auth"]
-        },
-        {
-            name: "CPU scheduling application",
-            date: "Dec 2020",
-            link: "https://github.com/vivek9patel/CPU-Scheduling-APP-React-Native",
-            description: [
-                "React Native Application to visualize the CPU Scheduling algorithms with different Processes and Animations with gannt chart.",
-            ],
-            domains: ["react-native", "javascript"]
-        },
-        {
-            name: "Meditech Healthcare WebApp",
-            date: "Nov 2020",
-            link: "https://github.com/vivek9patel/Meditech-Healthcare",
-            description: [
-                "Developed Web Application to predict and diagnose diseases from x-ray images.",
-            ],
-            domains: ["javascript", "html5", "sass", "firebase", "tensorflow"]
-        },
-        {
-            name: "Problem Recommendation System",
-            date: "Sep 2020",
-            link: "https://github.com/vivek9patel/Improve-Codeforces",
-            description: [
-                "Django web application to suggest practice problems from the areas in which the user struggles to get pass in code-forces.",
-            ],
-            domains: ["django", "python", "codeforces-api", "javascript"]
-        },
-        {
-            name: "Cleanliness Automation",
-            date: "Dec 2019",
-            link: "https://github.com/vivek9patel/CPU-Scheduling-APP-React-Native",
-            description: [
-                "Developed Web Applications to automate Garbage collection and extraction systems for SSIP hackathon",
-            ],
+            domains: ["javascript", "react", "tailwindcss", "html5"]
         }
     ];
 
@@ -360,7 +289,8 @@ function Projects() {
         "python": "green-200",
         "codeforces-api": "gray-300",
         "tailwindcss": "blue-300",
-        "next.js": "purple-600"
+        "next.js": "purple-600",
+        "react": "blue-400"
     }
 
     return (
