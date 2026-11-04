@@ -5,9 +5,9 @@ export default function Meta() {
     return (
         <Head>
             {/* Primary Meta Tags */}
-            <title>Vimal Soren Portfolio - ITI Fitter | Computer Skills</title>
+            <title>Vimal Soren</title>
             <meta charSet="utf-8" />
-            <meta name="title" content="Vimal Soren Portfolio - ITI Fitter | Computer Skills" />
+            <meta name="title" content="Vimal Soren" />
             <meta name="description"
                 content="Vimal Soren's Personal Portfolio Website. Made with Vimal (Linux theme) by Next.js and Tailwind CSS." />
             <meta name="author" content="Vimal Soren" />
