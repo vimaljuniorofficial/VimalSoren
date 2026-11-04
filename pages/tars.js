@@ -275,8 +275,8 @@ export default function TarsPage() {
                 <Link
                     href="/"
                     className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors shadow-sm h-9 w-9 border border-black dark:border-zinc-800 bg-white dark:bg-[#09090b] hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-95"
-                    aria-label="Boot Ubuntu"
-                    title="Boot Ubuntu"
+                    aria-label="Boot"
+                    title="Boot"
                 >
                     <img src="/themes/Yaru/status/cof_orange_hex.svg" alt="Ubuntu" className="h-6 w-6" />
                 </Link>
