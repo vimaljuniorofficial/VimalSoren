@@ -102,15 +102,15 @@ const apps = [
         screen: () => {},
     },
     {
-        id: "tars",
-        title: "Vimal",
-        icon: './themes/Yaru/apps/tars.svg',
-        disabled: false,
-        favourite: false,
-        desktop_shortcut: true,
-        isExternalApp: true,
-        url: "https://github.com/vimaljuniorofficial"
-    },
+    id: "tars",
+    title: "Ask TARS",
+    icon: './themes/Yaru/apps/tars.svg',
+    disabled: false,
+    favourite: true,
+    desktop_shortcut: true,
+    isExternalApp: true,
+    url: "/tars",
+},
 ]
 
 export default apps;
