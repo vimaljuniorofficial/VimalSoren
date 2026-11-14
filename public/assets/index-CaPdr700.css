@@ -109,25 +109,25 @@ html.mobile #root .ui-nav {
 }
 
 html.mobile #root .ui-nav aside {
-    --li-size: 55px;
-    --li-gap: 30px
+    --li-size: 52px;
+    --li-gap: 44px
 }
 
 html.mobile #root .ui-nav aside ul {
-    top: 58px;
-    right: 140px
+    top: 56px;
+    right: calc(var(--li-size) * 2 + var(--li-gap))
 }
 
 html.mobile #root .ui-nav aside ul>li svg {
     transform-origin: top center;
-    transform: scale(.85)
+    transform: scale(.82)
 }
 
 html.mobile #root .ui-nav aside ul>li:after {
     font-size: x-small;
     left: 50%;
     width: max-content;
-    transform: translate(-50%, 22px)
+    transform: translate(-50%, 24px)
 }
 
 html.mobile #root .ui-nav aside .burger-wrapper .burger {
@@ -701,22 +701,22 @@ html.html--loaded #root .ui-nav {
         right: 0
     }
     #root .ui-nav aside {
-        --li-size: 55px;
-        --li-gap: 30px
+        --li-size: 52px;
+        --li-gap: 44px
     }
     #root .ui-nav aside ul {
-        top: 58px;
-        right: 140px
+        top: 56px;
+        right: calc(var(--li-size) * 2 + var(--li-gap))
     }
     #root .ui-nav aside ul>li svg {
         transform-origin: top center;
-        transform: scale(.85)
+        transform: scale(.82)
     }
     #root .ui-nav.ui-nav aside ul>li:after {
         font-size: x-small;
         left: 50%;
         width: max-content;
-        transform: translate(-50%, 22px)
+        transform: translate(-50%, 24px)
     }
     #root .ui-nav aside .burger-wrapper .burger {
         transform: scale(1)
@@ -741,29 +741,29 @@ html.html--loaded #root .ui-nav {
     }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 480px) {
     html.mobile #root .ui-nav aside,
     #root .ui-nav aside {
-        --li-size: 42px;
-        --li-gap: 26px
+        --li-size: 40px;
+        --li-gap: clamp(28px, calc((100vw - 36px - var(--li-size) * 5) / 4), 44px)
     }
     html.mobile #root .ui-nav aside ul,
     #root .ui-nav aside ul {
-        top: 50px;
-        right: 110px
+        top: 46px;
+        right: calc(var(--li-size) * 2 + var(--li-gap))
     }
     html.mobile #root .ui-nav aside ul>li svg,
     #root .ui-nav aside ul>li svg {
-        transform: scale(.7)
+        transform: scale(.68)
     }
     html.mobile #root .ui-nav aside ul>li:after,
     #root .ui-nav.ui-nav aside ul>li:after {
         font-size: 9.5px;
-        transform: translate(-50%, 20px)
+        transform: translate(-50%, 22px)
     }
     html.mobile #root .ui-nav aside .burger-wrapper .burger,
     #root .ui-nav aside .burger-wrapper .burger {
-        padding: 6px
+        padding: 4px
     }
 }
 
@@ -774,26 +774,26 @@ html.html--loaded #root .ui-nav {
     }
     html.mobile #root .ui-nav aside,
     #root .ui-nav aside {
-        --li-size: 38px;
-        --li-gap: 18px
+        --li-size: 34px;
+        --li-gap: clamp(20px, calc((100vw - 28px - var(--li-size) * 5) / 4), 30px)
     }
     html.mobile #root .ui-nav aside ul,
     #root .ui-nav aside ul {
-        top: 46px;
-        right: 94px
+        top: 42px;
+        right: calc(var(--li-size) * 2 + var(--li-gap))
     }
     html.mobile #root .ui-nav aside ul>li svg,
     #root .ui-nav aside ul>li svg {
-        transform: scale(.62)
+        transform: scale(.58)
     }
     html.mobile #root .ui-nav aside ul>li:after,
     #root .ui-nav.ui-nav aside ul>li:after {
         font-size: 8.5px;
-        transform: translate(-50%, 18px)
+        transform: translate(-50%, 20px)
     }
     html.mobile #root .ui-nav aside .burger-wrapper .burger,
     #root .ui-nav aside .burger-wrapper .burger {
-        padding: 4px
+        padding: 2px
     }
 }
 
