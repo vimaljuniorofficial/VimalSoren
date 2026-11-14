@@ -110,12 +110,12 @@ html.mobile #root .ui-nav {
 
 html.mobile #root .ui-nav aside {
     --li-size: 55px;
-    --li-gap: 20px
+    --li-gap: 24px
 }
 
 html.mobile #root .ui-nav aside ul {
     top: 58px;
-    right: 120px
+    right: 134px
 }
 
 html.mobile #root .ui-nav aside ul>li svg {
@@ -702,11 +702,11 @@ html.html--loaded #root .ui-nav {
     }
     #root .ui-nav aside {
         --li-size: 55px;
-        --li-gap: 20px
+        --li-gap: 24px
     }
     #root .ui-nav aside ul {
         top: 58px;
-        right: 120px
+        right: 134px
     }
     #root .ui-nav aside ul>li svg {
         transform-origin: top center;
@@ -741,29 +741,29 @@ html.html--loaded #root .ui-nav {
     }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 430px) {
     html.mobile #root .ui-nav aside,
     #root .ui-nav aside {
-        --li-size: 50px;
-        --li-gap: 14px
+        --li-size: 46px;
+        --li-gap: 20px
     }
     html.mobile #root .ui-nav aside ul,
     #root .ui-nav aside ul {
-        top: 54px;
-        right: 108px
+        top: 52px;
+        right: 112px
     }
     html.mobile #root .ui-nav aside ul>li svg,
     #root .ui-nav aside ul>li svg {
-        transform: scale(.78)
+        transform: scale(.74)
     }
     html.mobile #root .ui-nav aside ul>li:after,
     #root .ui-nav.ui-nav aside ul>li:after {
-        font-size: 10px;
-        transform: translate(-50%, 18px)
+        font-size: 9.5px;
+        transform: translate(-50%, 19px)
     }
     html.mobile #root .ui-nav aside .burger-wrapper .burger,
     #root .ui-nav aside .burger-wrapper .burger {
-        padding: 10px
+        padding: 8px
     }
 }
 
@@ -774,22 +774,22 @@ html.html--loaded #root .ui-nav {
     }
     html.mobile #root .ui-nav aside,
     #root .ui-nav aside {
-        --li-size: 44px;
-        --li-gap: 10px
+        --li-size: 42px;
+        --li-gap: 14px
     }
     html.mobile #root .ui-nav aside ul,
     #root .ui-nav aside ul {
-        top: 50px;
-        right: 96px
+        top: 48px;
+        right: 98px
     }
     html.mobile #root .ui-nav aside ul>li svg,
     #root .ui-nav aside ul>li svg {
-        transform: scale(.68)
+        transform: scale(.66)
     }
     html.mobile #root .ui-nav aside ul>li:after,
     #root .ui-nav.ui-nav aside ul>li:after {
-        font-size: 9px;
-        transform: translate(-50%, 16px)
+        font-size: 8.5px;
+        transform: translate(-50%, 17px)
     }
 }
 
