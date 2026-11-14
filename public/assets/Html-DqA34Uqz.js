@@ -182,6 +182,18 @@ const ze = n.forwardRef(({
     const S = n.useRef(!0);
     Pe(d => {
         if (m.current) {
+            let vis = !0, pNode = m.current;
+            for (; pNode;) {
+                if (!pNode.visible) {
+                    vis = !1;
+                    break
+                }
+                pNode = pNode.parent
+            }
+            if (!vis) {
+                S.current && (S.current = !1, L ? L(!0) : u.style.display = "none");
+                return
+            }
             l.updateMatrixWorld(), m.current.updateWorldMatrix(!0, !1);
             const r = h ? $.current : B(m.current, l, f);
             if (h || Math.abs(q.current - l.zoom) > t || Math.abs($.current[0] - r[0]) > t || Math.abs($.current[1] - r[1]) > t) {

@@ -22,17 +22,21 @@ const MIME_TYPES = {
   '.json': 'application/json; charset=utf-8',
   '.glb': 'model/gltf-binary',
   '.gltf': 'model/gltf+json',
+  '.wasm': 'application/wasm',
   '.txt': 'text/plain; charset=utf-8',
   '.xml': 'application/xml; charset=utf-8'
 };
 
 const IMMUTABLE_PREFIXES = [
-  '/gltf/', '/texture/', '/hdri/', '/sounds/', '/fonts/', '/image/', '/vendors/'
+  '/gltf/', '/texture/', '/hdri/', '/sounds/', '/fonts/', '/image/', '/vendors/', '/draco/'
 ];
 
 const STATIC_PREFIXES = [
   '/assets/', ...IMMUTABLE_PREFIXES
 ];
+
+const GZIP_CACHE = new Map();
+const MAX_CACHE_FILE_BYTES = 12 * 1024 * 1024;
 
 function getCacheControl(reqPath) {
   if (reqPath === '/' || reqPath === '/index.html') {
@@ -43,7 +47,7 @@ function getCacheControl(reqPath) {
   }
   if (
     IMMUTABLE_PREFIXES.some(p => reqPath.startsWith(p)) ||
-    /\.(png|ico|webp|jpg|woff2|mp3|m4a|glb|gltf)$/i.test(reqPath)
+    /\.(png|ico|webp|jpg|woff2|mp3|m4a|glb|gltf|wasm)$/i.test(reqPath)
   ) {
     return 'public, max-age=86400, stale-while-revalidate=604800';
   }
@@ -55,9 +59,9 @@ app.get('/assets/Sebastien-DjQbSfGn.js', (req, res) => {
   res.redirect(301, '/assets/Vimal-DjQbSfGn.js');
 });
 
-// Stream gzipped responses for compressible static files (JS, CSS, HTML, GLB, SVG, JSON)
+// Serve cached or streamed gzipped responses for compressible static files
 app.use((req, res, next) => {
-  if (req.method !== 'GET' || req.headers.range) return next();
+  if ((req.method !== 'GET' && req.method !== 'HEAD') || req.headers.range) return next();
 
   const acceptEncoding = req.headers['accept-encoding'] || '';
   if (!/\bgzip\b/i.test(acceptEncoding)) return next();
@@ -74,6 +78,7 @@ app.use((req, res, next) => {
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) return next();
 
+    const cacheKey = `${filePath}:${stats.size}:${Math.floor(stats.mtimeMs)}`;
     const etag = `W/"${stats.size.toString(16)}-${Math.floor(stats.mtimeMs).toString(16)}-gz"`;
     res.setHeader('Vary', 'Accept-Encoding');
     res.setHeader('Cache-Control', getCacheControl(req.path));
@@ -86,6 +91,37 @@ app.use((req, res, next) => {
 
     res.setHeader('Content-Type', contentType);
     res.setHeader('Content-Encoding', 'gzip');
+
+    if (req.method === 'HEAD') {
+      return res.status(200).end();
+    }
+
+    const cached = GZIP_CACHE.get(cacheKey);
+    if (cached) {
+      res.setHeader('Content-Length', cached.length);
+      return res.end(cached);
+    }
+
+    if (stats.size <= MAX_CACHE_FILE_BYTES) {
+      fs.readFile(filePath, (readErr, data) => {
+        if (readErr) {
+          if (!res.headersSent) res.status(500).end();
+          return;
+        }
+        zlib.gzip(data, { level: zlib.constants.Z_BEST_SPEED }, (gzErr, gzBuf) => {
+          if (gzErr) {
+            if (!res.headersSent) res.status(500).end();
+            return;
+          }
+          GZIP_CACHE.set(cacheKey, gzBuf);
+          if (!res.headersSent) {
+            res.setHeader('Content-Length', gzBuf.length);
+            res.end(gzBuf);
+          }
+        });
+      });
+      return;
+    }
 
     const readStream = fs.createReadStream(filePath);
     const gzipStream = zlib.createGzip({ level: zlib.constants.Z_BEST_SPEED });
@@ -115,6 +151,8 @@ app.use((req, res, next) => {
     res.setHeader('Content-Type', 'model/gltf+json');
   } else if (req.path.endsWith('.m4a')) {
     res.setHeader('Content-Type', 'audio/mp4');
+  } else if (req.path.endsWith('.wasm')) {
+    res.setHeader('Content-Type', 'application/wasm');
   }
   res.setHeader('Cache-Control', getCacheControl(req.path));
   next();

@@ -2321,6 +2321,7 @@ const rn = () => {
         const {
             mobile: n
         } = pe.getState(), t = ma(), i = D.useRef(t), o = D.useRef(null), u = n ? new Ze(-20, 8, -43) : new Ze(-20, 8, -43), d = 10;
+        let dA = null, dB = null, dC = null, dD = null, dTxt = null;
         return D.useEffect(() => pe.subscribe(h => h.country, h => {
             const m = [document.querySelector(".fr-text-content"), ...document.querySelectorAll(".fr-description")].filter(Boolean);
             ua() ? m.forEach(f => f?.classList.remove("active")) : ([...document.querySelectorAll(".fr-description")].forEach(p => p?.classList.add("active")), h === "frlux" ? document.querySelector(".fr-text-content")?.classList.add("active") : document.querySelector(".fr-text-content")?.classList.remove("active"))
@@ -2330,7 +2331,7 @@ const rn = () => {
             } = pe.getState(), f = document.querySelector(".fr-text-content");
             if (m === "fr" && h >= .95 && f && !f.classList.contains("active") && f.classList.add("active"), m === "frlux") {
                 if (h > 0) {
-                    const p = document.querySelector(".fr-text-content>div");
+                    const p = dTxt && dTxt.isConnected ? dTxt : (dTxt = document.querySelector(".fr-text-content>div"));
                     if (!p) return;
                     if (n) {
                         const C = 480 - h * 15e3;
@@ -2341,7 +2342,7 @@ const rn = () => {
                     }
                 }
             } else {
-                const p = document.querySelector(".fr-text-content>div");
+                const p = dTxt && dTxt.isConnected ? dTxt : (dTxt = document.querySelector(".fr-text-content>div"));
                 if (!p) return;
                 n ? p.style.transform = "translateY(480px)" : p.style.transform = "perspective(250px) translateY(410px) rotateX(0deg) rotateY(0deg)"
             }
@@ -2350,9 +2351,16 @@ const rn = () => {
                 scroll: h
             } = $e.getState(), {
                 country: m
-            } = pe.getState(), f = document.querySelector(".fr-description.a .span"), p = document.querySelector(".fr-description.b .span"), C = document.querySelector(".fr-description.c .span"), I = document.querySelector(".fr-description.d .span");
-            if (m === "fr" ? (h > .15 && f ?.classList.add("active"), h > .2 && p ?.classList.add("active"), h > .25 && C ?.classList.add("active"), h > .3 && I ?.classList.add("active"), h < .1 && (f ?.classList.remove("active"), p ?.classList.remove("active"), C ?.classList.remove("active"), I ?.classList.remove("active"))) : (f ?.classList.remove("active"), p ?.classList.remove("active"), C ?.classList.remove("active"), I ?.classList.remove("active")), m === "frlux") {
-                const b = document.querySelector(".fr-text-content > div");
+            } = pe.getState();
+            if (m === "fr") {
+                const f = dA && dA.isConnected ? dA : (dA = document.querySelector(".fr-description.a .span")),
+                    p = dB && dB.isConnected ? dB : (dB = document.querySelector(".fr-description.b .span")),
+                    C = dC && dC.isConnected ? dC : (dC = document.querySelector(".fr-description.c .span")),
+                    I = dD && dD.isConnected ? dD : (dD = document.querySelector(".fr-description.d .span"));
+                h > .15 && f ?.classList.add("active"), h > .2 && p ?.classList.add("active"), h > .25 && C ?.classList.add("active"), h > .3 && I ?.classList.add("active"), h < .1 && (f ?.classList.remove("active"), p ?.classList.remove("active"), C ?.classList.remove("active"), I ?.classList.remove("active"))
+            } else if (m === "frlux") {
+                dA?.classList.remove("active"), dB?.classList.remove("active"), dC?.classList.remove("active"), dD?.classList.remove("active");
+                const b = dTxt && dTxt.isConnected ? dTxt : (dTxt = document.querySelector(".fr-text-content > div"));
                 if (b) {
                     if (n) {
                         const U = 480 - h * 15e3;
