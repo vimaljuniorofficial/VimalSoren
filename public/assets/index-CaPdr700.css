@@ -103,59 +103,58 @@ html.mobile #root .fr-text .fr-text-content>div:nth-child(2) {
     visibility: hidden
 }
 
-@media screen and (min-width: 641px) and (min-height: 481px) {
-    html.mobile #root .ui-nav {
-        padding: 12px;
-        right: 0
-    }
+html.mobile #root .ui-nav {
+    padding: 10px;
+    right: 0
+}
 
-    html.mobile #root .ui-nav>aside {
-        --li-size: 56px;
-        --li-gap: 10px
-    }
+html.mobile #root .ui-nav aside {
+    --li-size: 55px;
+    --li-gap: 20px
+}
 
-    html.mobile #root .ui-nav>aside ul {
-        top: var(--li-size);
-        right: calc(var(--li-size) * 2 + var(--li-gap))
-    }
+html.mobile #root .ui-nav aside ul {
+    top: 58px;
+    right: 120px
+}
 
-    html.mobile #root .ui-nav>aside ul>li svg {
-        transform-origin: center center;
-        transform: scale(.75)
-    }
+html.mobile #root .ui-nav aside ul>li svg {
+    transform-origin: top center;
+    transform: scale(.85)
+}
 
-    html.mobile #root .ui-nav>aside ul>li:after {
-        font-size: 10px;
-        transform: translate(0) translateY(18px)
-    }
+html.mobile #root .ui-nav aside ul>li:after {
+    font-size: x-small;
+    left: 50%;
+    width: max-content;
+    transform: translate(-50%, 20px)
+}
 
-    html.mobile #root .ui-nav>aside .burger-wrapper .burger {
-        transform: scale(1);
-        padding: 8px
-    }
+html.mobile #root .ui-nav aside .burger-wrapper .burger {
+    transform: scale(1)
+}
 
-    html.mobile #root .ui-nav>aside .burger-wrapper .burger-box {
-        transform: scale(.68) !important
-    }
+html.mobile #root .ui-nav aside .burger-wrapper .burger-box {
+    transform: scale(.65) !important
+}
 
-    html.mobile #root .ui-nav>aside .sound {
-        position: absolute !important;
-        bottom: max(12px, env(safe-area-inset-bottom));
-        right: 0;
-        transform: none !important
-    }
+html.mobile #root .ui-nav aside .sound {
+    position: absolute !important;
+    bottom: 0;
+    right: 0;
+    transform: translateY(-20px) !important
+}
 
-    html.mobile #root .ui-nav>aside .sound>div {
-        bottom: 20px !important
-    }
+html.mobile #root .ui-nav aside .sound>div {
+    bottom: 20px !important
+}
 
-    html.mobile #root .ui-nav>aside .sound span {
-        max-height: 25px
-    }
+html.mobile #root .ui-nav aside .sound span {
+    max-height: 25px
+}
 
-    html.mobile #root .ui-nav>aside .sound.sound--active:before {
-        transform: scale(.95) !important
-    }
+html.mobile #root .ui-nav aside .sound.sound--active:before {
+    transform: scale(1.1) !important
 }
 
 html.mobile #root .portfolio-item-svg {
@@ -691,279 +690,106 @@ html.html--loaded #root .ui-nav {
     opacity: 1
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 768px) {
     html,
     body,
     #root {
         height: 100dvh
     }
     #root .ui-nav {
-        right: 0;
-        padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left))
-    }
-    #root .ui-nav>aside {
-        --li-size: 68px;
-        --li-gap: 10px;
-        width: 100%;
-        min-width: 0
-    }
-    #root .ui-nav>aside ul {
-        top: var(--li-size);
-        right: calc(var(--li-size) * 2 + var(--li-gap))
-    }
-    #root .ui-nav>aside ul>li svg {
-        transform-origin: center center;
-        transform: scale(.82)
-    }
-    #root .ui-nav>aside ul>li:after {
-        font-size: 11px;
-        transform: translate(0) translateY(18px)
-    }
-    #root .ui-nav>aside .burger-wrapper .burger {
         padding: 10px;
-        transform: scale(.78) translateY(2px)
-    }
-    #root .ui-nav>aside .sound {
-        transform: translateY(-16px)
-    }
-    #root .ui-nav>aside .sound>div {
-        bottom: 30px;
-        max-height: 32px
-    }
-    #root .ui-nav>aside .sound>div:after {
-        bottom: -20px;
-        font-size: 11px
-    }
-}
-
-@media screen and (max-width: 640px) {
-    #root .ui-nav {
-        right: 0;
-        padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left))
-    }
-    #root .ui-nav:has(.burger-wrapper--active):before {
-        background-color: #000000a6;
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px)
-    }
-    #root .ui-nav>aside {
-        --li-size: 52px;
-        --li-gap: 10px;
-        width: 100%;
-        min-width: 0;
-        justify-content: space-between
-    }
-    #root .ui-nav>aside .burger-wrapper {
-        width: var(--li-size);
-        height: var(--li-size);
-        flex-shrink: 0
-    }
-    #root .ui-nav>aside .burger-wrapper .burger {
-        padding: 8px;
-        transform: scale(.9)
-    }
-    #root .ui-nav>aside .burger-wrapper .burger:after {
-        bottom: -10px;
-        font-size: 11px
-    }
-    #root .ui-nav>aside .burger-wrapper .burger>.burger-box {
-        transform: scale(.72) !important
-    }
-    #root .ui-nav>aside ul {
-        top: calc(var(--li-size) + 14px);
-        right: 0;
-        width: auto;
-        max-width: calc(100vw - 24px);
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        justify-content: flex-start;
-        gap: 10px;
-        pointer-events: none
-    }
-    #root .ui-nav>aside ul>li {
-        position: relative;
-        bottom: auto;
-        width: auto;
-        min-width: 178px;
-        max-width: calc(100vw - 24px);
-        height: 50px;
-        padding: 0 14px 0 18px;
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: center;
-        justify-content: space-between;
-        gap: 14px;
-        background-color: #141414b8;
-        border: 1px solid rgba(255, 255, 255, .18);
-        border-radius: 8px;
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        opacity: 0;
-        transform: translate3d(16px, -6px, 0);
-        pointer-events: none;
-        transition: opacity .25s ease, transform .25s ease, background-color .2s ease, border-color .2s ease
-    }
-    #root .ui-nav>aside ul>li:before {
-        display: none
-    }
-    #root .ui-nav>aside ul>li:after {
-        position: static;
-        left: auto !important;
-        bottom: auto;
-        width: auto;
-        transform: none !important;
-        font-size: 12px;
-        letter-spacing: .08em;
-        line-height: 1;
-        text-align: left;
-        opacity: .88;
-        pointer-events: none
-    }
-    #root .ui-nav>aside ul>li:nth-child(3):after {
-        left: auto !important
-    }
-    #root .ui-nav>aside ul>li svg {
-        margin: 0;
-        flex-shrink: 0;
-        transform-origin: center center;
-        transform: scale(.62)
-    }
-    #root .ui-nav>aside ul>li.disabled {
-        background-color: #ffffff33;
-        border-color: #ffffff8c
-    }
-    #root .ui-nav>aside ul>li.disabled:after {
-        opacity: 1
-    }
-    #root .ui-nav>aside ul>li:nth-child(1) {
-        transition-delay: .12s, .12s
-    }
-    #root .ui-nav>aside ul>li:nth-child(2) {
-        transition-delay: .09s, .09s
-    }
-    #root .ui-nav>aside ul>li:nth-child(3) {
-        transition-delay: .06s, .06s
-    }
-    #root .ui-nav>aside ul>li:nth-child(4) {
-        transition-delay: .03s, .03s
-    }
-    #root .ui-nav>aside:has(>.burger-wrapper--active)>ul li {
-        pointer-events: auto;
-        border-radius: 8px;
-        opacity: 1;
-        transform: translate3d(0, 0, 0)
-    }
-    #root .ui-nav>aside:has(>.burger-wrapper--active)>ul li:nth-child(1) {
-        transform: translate3d(0, 0, 0);
-        transition-delay: 40ms, 40ms !important
-    }
-    #root .ui-nav>aside:has(>.burger-wrapper--active)>ul li:nth-child(2) {
-        transform: translate3d(0, 0, 0);
-        transition-delay: 80ms, 80ms !important
-    }
-    #root .ui-nav>aside:has(>.burger-wrapper--active)>ul li:nth-child(3) {
-        transform: translate3d(0, 0, 0);
-        transition-delay: 120ms, 120ms !important
-    }
-    #root .ui-nav>aside:has(>.burger-wrapper--active)>ul li:nth-child(4) {
-        transform: translate3d(0, 0, 0);
-        transition-delay: 160ms, 160ms !important
-    }
-    #root .ui-nav>aside>div.sound {
-        position: absolute !important;
-        bottom: 4px;
-        right: 0;
-        width: var(--li-size);
-        height: var(--li-size);
-        transform: none !important
-    }
-    #root .ui-nav>aside>div.sound>div {
-        bottom: 20px !important;
-        max-height: 24px
-    }
-    #root .ui-nav>aside>div.sound>div:after {
-        bottom: -18px;
-        font-size: 11px
-    }
-    #root .ui-nav>aside>div.sound>div>span {
-        width: 2.5px;
-        max-height: 24px
-    }
-    #root .ui-nav>aside>div.sound.sound--active:before {
-        transform: scale(.9) !important
-    }
-}
-
-@media screen and (max-height: 480px) and (max-width: 920px) {
-    #root .ui-nav {
-        padding: 10px 12px;
         right: 0
     }
-    #root .ui-nav>aside {
-        --li-size: 48px;
-        --li-gap: 8px
+    #root .ui-nav aside {
+        --li-size: 55px;
+        --li-gap: 20px
     }
-    #root .ui-nav>aside ul {
-        top: calc(var(--li-size) + 10px);
-        right: 0;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(145px, auto));
-        gap: 8px
+    #root .ui-nav aside ul {
+        top: 58px;
+        right: 120px
     }
-    #root .ui-nav>aside ul>li {
-        position: relative;
-        bottom: auto;
-        width: auto;
-        min-width: 145px;
-        height: 44px;
-        padding: 0 12px 0 14px;
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        background-color: #141414b8;
-        border: 1px solid rgba(255, 255, 255, .18);
-        border-radius: 8px;
-        transform: translate3d(0, -8px, 0)
+    #root .ui-nav aside ul>li svg {
+        transform-origin: top center;
+        transform: scale(.85)
     }
-    #root .ui-nav>aside ul>li:before {
-        display: none
+    #root .ui-nav.ui-nav aside ul>li:after {
+        font-size: x-small;
+        left: 50%;
+        width: max-content;
+        transform: translate(-50%, 20px)
     }
-    #root .ui-nav>aside ul>li:after {
-        position: static;
-        left: auto !important;
-        bottom: auto;
-        width: auto;
-        transform: none !important;
-        font-size: 11px;
-        letter-spacing: .06em;
-        opacity: .9
+    #root .ui-nav aside .burger-wrapper .burger {
+        transform: scale(1)
     }
-    #root .ui-nav>aside ul>li svg {
-        margin: 0;
-        transform-origin: center center;
-        transform: scale(.55)
+    #root .ui-nav aside .burger-wrapper .burger-box {
+        transform: scale(.65) !important
     }
-    #root .ui-nav>aside:has(>.burger-wrapper--active)>ul li,
-    #root .ui-nav>aside:has(>.burger-wrapper--active)>ul li:nth-child(1),
-    #root .ui-nav>aside:has(>.burger-wrapper--active)>ul li:nth-child(2),
-    #root .ui-nav>aside:has(>.burger-wrapper--active)>ul li:nth-child(3),
-    #root .ui-nav>aside:has(>.burger-wrapper--active)>ul li:nth-child(4) {
-        transform: translate3d(0, 0, 0);
-        opacity: 1;
-        pointer-events: auto
-    }
-    #root .ui-nav>aside>div.sound {
+    #root .ui-nav aside .sound {
         position: absolute !important;
-        bottom: 4px;
+        bottom: 0;
         right: 0;
-        transform: none !important
+        transform: translateY(-20px) !important
     }
-    #root .ui-nav>aside>div.sound>div {
-        bottom: 18px !important;
-        max-height: 22px
+    #root .ui-nav aside .sound>div {
+        bottom: 20px !important
+    }
+    #root .ui-nav aside .sound span {
+        max-height: 25px
+    }
+    #root .ui-nav aside .sound.sound--active:before {
+        transform: scale(1.1) !important
+    }
+}
+
+@media screen and (max-width: 420px) {
+    html.mobile #root .ui-nav aside,
+    #root .ui-nav aside {
+        --li-size: 50px;
+        --li-gap: 14px
+    }
+    html.mobile #root .ui-nav aside ul,
+    #root .ui-nav aside ul {
+        top: 54px;
+        right: 108px
+    }
+    html.mobile #root .ui-nav aside ul>li svg,
+    #root .ui-nav aside ul>li svg {
+        transform: scale(.78)
+    }
+    html.mobile #root .ui-nav aside ul>li:after,
+    #root .ui-nav.ui-nav aside ul>li:after {
+        font-size: 10px;
+        transform: translate(-50%, 18px)
+    }
+    html.mobile #root .ui-nav aside .burger-wrapper .burger,
+    #root .ui-nav aside .burger-wrapper .burger {
+        padding: 10px
+    }
+}
+
+@media screen and (max-width: 359px) {
+    html.mobile #root .ui-nav,
+    #root .ui-nav {
+        padding: 8px
+    }
+    html.mobile #root .ui-nav aside,
+    #root .ui-nav aside {
+        --li-size: 44px;
+        --li-gap: 10px
+    }
+    html.mobile #root .ui-nav aside ul,
+    #root .ui-nav aside ul {
+        top: 50px;
+        right: 96px
+    }
+    html.mobile #root .ui-nav aside ul>li svg,
+    #root .ui-nav aside ul>li svg {
+        transform: scale(.68)
+    }
+    html.mobile #root .ui-nav aside ul>li:after,
+    #root .ui-nav.ui-nav aside ul>li:after {
+        font-size: 9px;
+        transform: translate(-50%, 16px)
     }
 }
 
