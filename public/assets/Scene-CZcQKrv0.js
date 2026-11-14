@@ -3596,17 +3596,9 @@ const Ma = ({
             isMobile: c = !!Oe ?.isMobile,
             screenSize: l = window.screen,
             loadBenchmarks: u = (S => Vs(void 0, void 0, void 0, (function*() {
-                const D = typeof AbortController < "u" ? new AbortController : null,
-                    F = D ? setTimeout(() => D.abort(), 600) : null;
-                try {
-                    const R = yield fetch(`${r}/${S}`, D ? {
-                        signal: D.signal
-                    } : void 0).then((w => w.json()));
-                    if (parseInt(R.shift().split(".")[0], 10) < 4) throw new _n("Detect GPU benchmark data is out of date. Please update to version 4x");
-                    return R
-                } finally {
-                    F && clearTimeout(F)
-                }
+                const R = yield fetch(`${r}/${S}`).then((D => D.json()));
+                if (parseInt(R.shift().split(".")[0], 10) < 4) throw new _n("Detect GPU benchmark data is out of date. Please update to version 4x");
+                return R
             })))
         } = t;
         let {
@@ -8307,7 +8299,7 @@ const Sl = () => {
                     break
             }
             if (t.current && t.current.position.copy(a.position.clone()), n.current && (n.current.uniforms.uTime.value = c.getElapsedTime(), n.current.uniforms.uResolution.value.x = innerWidth, n.current.uniforms.uResolution.value.y = innerHeight, n.current.uniforms.uTransition.value = f, n.current.uniforms.uTransitionNumber.value = _), +A <= 1 && !v) {
-                ge(o, "value", A, .35, l), A >= 1 && o.value > .99 && (o.value = 1);
+                ge(o, "value", A, 1.2, l), A >= 1 && o.value > .99 && (o.value = 1);
                 const g = u ?.querySelector("code");
                 T = Math.min(100, Math.round(o.value.toFixed(2) * 100));
                 const B = T.toString().padStart(3, "0");
@@ -8461,7 +8453,7 @@ const Sl = () => {
                     I.setState({
                         scene_loaded: !0
                     })
-                }, 50)
+                }, 1e3)
             }, I.setState({
                 fog: t.current
             })
