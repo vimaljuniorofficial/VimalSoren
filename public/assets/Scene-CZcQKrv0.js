@@ -7985,7 +7985,7 @@ function Ql(s) {
     if (e) try {
         const i = e.children.find(({
             userData: n
-        }) => n.name === "sebastien");
+        }) => n.name === "vimal");
         if (i) return i.removeFromParent(), t.add(i), !0
     } catch (i) {
         return console.error("Erreur fichier Vespa.tsx - L57", i), !1

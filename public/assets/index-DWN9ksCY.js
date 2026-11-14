@@ -36734,14 +36734,14 @@ const wP = s => {
     RP = {
         mesh_loaded: !1,
         mesh_animations: null,
-        mesh_sebastien: null,
+        mesh_vimal: null,
         mesh_vespa: null,
         mesh_vespa_stopped: !0,
         mesh_position_init: {
-            sebastien_1: [22.40999984741211, 5.592800140380859, 38.503299713134766]
+            vimal_1: [22.40999984741211, 5.592800140380859, 38.503299713134766]
         },
         mesh_rotation_init: {
-            sebastien_1: [0, 2.6222500801086426, 0]
+            vimal_1: [0, 2.6222500801086426, 0]
         }
     },
     bP = {
