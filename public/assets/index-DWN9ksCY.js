@@ -36962,7 +36962,7 @@ const wP = s => {
                 const w = x.target ?.nodeName,
                     C = document.querySelector(".burger-wrapper"),
                     E = document.querySelector(".joystick");
-                w === "ASIDE" && (C ?.classList.remove("burger-wrapper--active"), E ?.classList.remove("disabled"))
+                (w === "ASIDE" || w === "UL" || x.target ?.classList ?.contains("ui-nav")) && (C ?.classList.remove("burger-wrapper--active"), E ?.classList.remove("disabled"))
             };
         return et.useEffect(() => En.subscribe(x => x.isSoundsMuted, x => {
             i.current = !x;
@@ -37041,6 +37041,15 @@ const wP = s => {
                     x && (x.style.left = `${C}px`, x.style.top = `${E}px`)
                 };
             return x ?.classList.add("cursor-scroll--hidden"), window.addEventListener("mousemove", w), () => window.removeEventListener("mousemove", w)
+        }, []), et.useEffect(() => {
+            const x = w => {
+                if (w.key === "Escape") {
+                    const C = document.querySelector(".burger-wrapper"),
+                        E = document.querySelector(".joystick");
+                    C ?.classList.remove("burger-wrapper--active"), E ?.classList.remove("disabled")
+                }
+            };
+            return window.addEventListener("keydown", x), () => window.removeEventListener("keydown", x)
         }, []), Et.jsxs(Et.Fragment, {
             children: [Et.jsx("div", {
                 className: "cinematic-stripe __html"
