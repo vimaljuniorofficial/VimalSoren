@@ -1,4 +1,4 @@
-const __vite__mapDeps = (i, m = __vite__mapDeps, d = (m.f || (m.f = ["assets/Sebastien-DjQbSfGn.js", "assets/index-DWN9ksCY.js", "assets/index-CaPdr700.css", "assets/useMouse-DI7rIHQk.js", "assets/useAnimation-BDxQNQqc.js", "assets/Scene-CZcQKrv0.js", "assets/Vespa-3w801IVQ.js", "assets/shapes-CMzZ5bur.js", "assets/Birds-7esWrwq1.js", "assets/SkeletonUtils-Bb3ofiA8.js", "assets/Cat-ClkqUjjm.js"]))) => i.map(i => d[i]);
+const __vite__mapDeps = (i, m = __vite__mapDeps, d = (m.f || (m.f = ["assets/Vimal-DjQbSfGn.js", "assets/index-DWN9ksCY.js", "assets/index-CaPdr700.css", "assets/useMouse-DI7rIHQk.js", "assets/useAnimation-BDxQNQqc.js", "assets/Scene-CZcQKrv0.js", "assets/Vespa-3w801IVQ.js", "assets/shapes-CMzZ5bur.js", "assets/Birds-7esWrwq1.js", "assets/SkeletonUtils-Bb3ofiA8.js", "assets/Cat-ClkqUjjm.js"]))) => i.map(i => d[i]);
 import {
     aM as l,
     aK as o,
@@ -10,7 +10,7 @@ import {
     a as r
 } from "./Scene-CZcQKrv0.js";
 const _ = e.lazy(() => t(() =>
-        import ("./Sebastien-DjQbSfGn.js"), __vite__mapDeps([0, 1, 2, 3, 4, 5]))),
+        import ("./Vimal-DjQbSfGn.js"), __vite__mapDeps([0, 1, 2, 3, 4, 5]))),
     d = e.lazy(() => t(() =>
         import ("./Vespa-3w801IVQ.js"), __vite__mapDeps([6, 1, 2, 5, 4, 7]))),
     i = e.lazy(() => t(() =>
