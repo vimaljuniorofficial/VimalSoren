@@ -2225,10 +2225,25 @@ const Hs = () => {
                 camera: u
             }) => u),
             [c] = x.useState(() => new fo),
-            l = ct(po, s);
+            [l, h] = x.useState(null);
         return x.useEffect(() => {
+            let g = !1;
+            const y = new po;
+            return y.load(s, b => {
+                !g && h(b)
+            }, void 0, () => {}), () => {
+                g = !0
+            }
+        }, [s]), x.useEffect(() => {
             const u = o.current;
-            u && (u.setBuffer(l), u.setRefDistance(e), u.setLoop(t), i && !u.isPlaying && u.play())
+            if (u && l) {
+                u.setBuffer(l), u.setRefDistance(e), u.setLoop(t);
+                const g = !I.getState().isSoundsMuted && (s.includes("theme") || s.includes("wind"));
+                if ((i || g) && !u.isPlaying) try {
+                    const ctx = u.context;
+                    ctx && ctx.state === "suspended" && ctx.resume().catch(() => {}), u.play()
+                } catch {}
+            }
         }, [l, a, e, t]), x.useEffect(() => {
             const u = o.current;
             return a.add(c), () => {
@@ -3596,9 +3611,17 @@ const Ma = ({
             isMobile: c = !!Oe ?.isMobile,
             screenSize: l = window.screen,
             loadBenchmarks: u = (S => Vs(void 0, void 0, void 0, (function*() {
-                const R = yield fetch(`${r}/${S}`).then((D => D.json()));
-                if (parseInt(R.shift().split(".")[0], 10) < 4) throw new _n("Detect GPU benchmark data is out of date. Please update to version 4x");
-                return R
+                const D = typeof AbortController < "u" ? new AbortController : null,
+                    F = D ? setTimeout(() => D.abort(), 1500) : null;
+                try {
+                    const R = yield fetch(`${r}/${S}`, D ? {
+                        signal: D.signal
+                    } : void 0).then((w => w.json()));
+                    if (parseInt(R.shift().split(".")[0], 10) < 4) throw new _n("Detect GPU benchmark data is out of date. Please update to version 4x");
+                    return R
+                } finally {
+                    F && clearTimeout(F)
+                }
             })))
         } = t;
         let {
@@ -8441,22 +8464,24 @@ const Sl = () => {
         return x.useEffect(() => I.subscribe(i => i.country, i => {
             (i === "fr" || i === "befr2") && t.current && (t.current.color.set("hsl(325,15%,45%)"), t.current.near = 0, t.current.far = I.getState().fog_init_value)
         }), []), x.useEffect(() => {
-            Vi.onProgress = function(i, n, r) {
-                const o = Math.min(n / Math.max(r || 1, 1), 1);
-                o > I.getState().scene_load_progress && I.setState({
-                    scene_load_progress: o
-                })
-            }, Vi.onLoad = function() {
-                I.setState({
-                    scene_load_progress: 1
-                }), setTimeout(() => {
-                    I.setState({
+            Zl(), I.setState({
+                fog: t.current
+            });
+            let i = null;
+            const n = I.subscribe(r => r.fr_component_loaded, r => {
+                r && !I.getState().scene_loaded && (i = setTimeout(() => {
+                    I.getState().scene_load_progress < 1 && I.setState({
+                        scene_load_progress: 1
+                    }), I.getState().scene_loaded || I.setState({
                         scene_loaded: !0
                     })
-                }, 1e3)
-            }, I.setState({
-                fog: t.current
-            })
+                }, 1500))
+            }, {
+                fireImmediately: !0
+            });
+            return () => {
+                n(), i && clearTimeout(i)
+            }
         }, []), L.jsxs(L.Fragment, {
             children: [L.jsx(Ml, {}), bl(), L.jsx("fog", {
                 attach: "fog",
@@ -8483,6 +8508,31 @@ const Sl = () => {
             })]
         })
     };
+let Jl = !1;
+function Zl() {
+    if (Jl) return;
+    Jl = !0;
+    const s = () => {
+        I.setState({
+            scene_load_progress: 1
+        }), setTimeout(() => {
+            I.setState({
+                scene_loaded: !0
+            })
+        }, 1e3)
+    };
+    Vi.onProgress = function(e, t, i) {
+        const n = Math.min(t / Math.max(i || 1, 1), 1);
+        n > I.getState().scene_load_progress && I.setState({
+            scene_load_progress: n
+        })
+    }, Vi.onError = function() {
+        I.setState({
+            scene_load_progress: Math.max(I.getState().scene_load_progress, .99)
+        })
+    }, Vi.onLoad = s
+}
+Zl();
 ht.preload(I.getState().fr_glb_path);
 ht.preload(I.getState().lu_glb_path);
 ht.preload(I.getState().be_glb_path);

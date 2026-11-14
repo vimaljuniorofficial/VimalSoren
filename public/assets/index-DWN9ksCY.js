@@ -37148,8 +37148,48 @@ const wP = s => {
         })
     },
     DP = et.lazy(() => mw(() =>
-        import ("./Scene-CZcQKrv0.js").then(s => s.S), [])),
-    UP = () => Et.jsxs(Et.Fragment, {
+        import ("./Scene-CZcQKrv0.js").then(s => s.S), []));
+class _SceneErrorBoundary extends et.Component {
+    constructor(s) {
+        super(s), this.state = {
+            error: null
+        }
+    }
+    static getDerivedStateFromError(s) {
+        return {
+            error: s
+        }
+    }
+    componentDidCatch(s) {
+        console.error("Scene render error:", s);
+        const e = document.getElementById("preloader");
+        e && e.remove()
+    }
+    render() {
+        return this.state.error ? Et.jsx("div", {
+            style: {
+                position: "fixed",
+                inset: 0,
+                display: "grid",
+                placeItems: "center",
+                background: "#e4e4e4",
+                color: "#333",
+                fontFamily: "sans-serif",
+                padding: "24px",
+                textAlign: "center",
+                zIndex: 2147483601
+            },
+            children: Et.jsxs("div", {
+                children: [Et.jsx("h2", {
+                    children: "Unable to initialize 3D WebGL scene"
+                }), Et.jsx("p", {
+                    children: "Please ensure hardware acceleration / WebGL is enabled in your browser and reload the page."
+                })]
+            })
+        }) : this.props.children
+    }
+}
+const UP = () => Et.jsxs(_SceneErrorBoundary, {
         children: [Et.jsx(cP, {
             shadows: !0,
             gl: {
