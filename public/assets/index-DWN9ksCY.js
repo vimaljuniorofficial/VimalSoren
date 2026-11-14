@@ -27265,13 +27265,7 @@ class ER extends Ur {
 let Gp;
 class Jv {
     static getContext() {
-        if (Gp === void 0) try {
-            const e = window.AudioContext || window.webkitAudioContext;
-            Gp = e ? new e : null
-        } catch {
-            Gp = null
-        }
-        return Gp
+        return Gp === void 0 && (Gp = new(window.AudioContext || window.webkitAudioContext)), Gp
     }
     static setContext(e) {
         Gp = e
@@ -27284,33 +27278,19 @@ class TR extends Ur {
     load(e, t, n, i) {
         const a = this,
             c = new ra(this.manager);
-        let l = !1;
-        const o = v => {
-            if (!l) {
-                l = !0;
-                t(v)
-            }
-        };
         c.setResponseType("arraybuffer"), c.setPath(this.path), c.setRequestHeader(this.requestHeader), c.setWithCredentials(this.withCredentials), c.load(e, function(d) {
             try {
-                const ctx = Jv.getContext();
-                if (!ctx || !d) return o(null);
-                const p = d.slice(0),
-                    r = ctx.decodeAudioData(p, function(v) {
-                        o(v)
-                    }, function(v) {
-                        f(v)
-                    });
-                r && typeof r.catch == "function" && r.catch(function(v) {
-                    f(v)
-                })
+                const p = d.slice(0);
+                Jv.getContext().decodeAudioData(p, function(v) {
+                    t(v)
+                }).catch(f)
             } catch (p) {
                 f(p)
             }
-        }, n, f);
+        }, n, i);
 
         function f(d) {
-            console.warn("Audio load/decode fallback:", e, d), a.manager.itemError(e), o(null)
+            i ? i(d) : console.error(d), a.manager.itemError(e)
         }
     }
 }

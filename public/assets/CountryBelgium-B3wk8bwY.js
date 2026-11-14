@@ -31,13 +31,11 @@ import {
 import "./deprecated-yOBBLatR.js";
 const K = () => {
         const u = r.useRef(null);
-        let c = !1;
         return r.useRef(), R(({
             scene: a
         }) => a), r.useEffect(() => {}, []), x(() => {
-            const a = o.getState().country,
-                e = a === "be" || a === "befr";
-            u.current && (u.current.intensity = e ? 3 : 0, c !== e && (u.current.castShadow = e, c = e))
+            const a = o.getState().country;
+            u.current && (u.current.intensity = a === "be" || a === "befr" ? 3 : 0)
         }), i.jsx(i.Fragment, {
             children: i.jsx("directionalLight", {
                 ref: u,
@@ -53,7 +51,7 @@ const K = () => {
                 "shadow-camera-left": -200,
                 "shadow-camera-near": 200,
                 "shadow-camera-far": 300,
-                castShadow: !1
+                castShadow: !0
             })
         })
     },
@@ -99,8 +97,7 @@ const K = () => {
         }), []);
         let O = !1,
             T = !1,
-            B = !1,
-            wp = null;
+            B = !1;
         return x((t, s) => {
             const {
                 country: l,
@@ -112,7 +109,7 @@ const K = () => {
             } = m.getState();
             if (l === "be")
                 if (O) {
-                    const b = wp && wp.isConnected ? wp : (wp = document.querySelector(".white-plane"));
+                    const b = document.querySelector(".white-plane");
                     b && L(b.style, "opacity", 0, 1, s);
                     const D = F((p - C) / (N - C), 0, 1),
                         q = Math.PI / 2 - Math.PI / 2 * D;
@@ -129,7 +126,7 @@ const K = () => {
                     I && o.setState({
                         mobileJoystickActive: !1
                     }), M(e.position, f.fr, .6, s), v(e.rotation, z.fr, .6, s);
-                    const b = wp && wp.isConnected ? wp : (wp = document.querySelector(".white-plane"));
+                    const b = document.querySelector(".white-plane");
                     b && L(b.style, "opacity", 0, 1, s), e.position.z === f.fr[2] && o.setState({
                         country: "fr"
                     })
@@ -181,7 +178,7 @@ const K = () => {
                     seed: 4,
                     speed: .4,
                     smallestVolume: 1,
-                    segments: 80,
+                    segments: 200,
                     opacity: 1,
                     bounds: [30, 80, 30],
                     volume: 30,

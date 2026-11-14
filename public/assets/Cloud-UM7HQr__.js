@@ -71,11 +71,6 @@ const K = "/texture/cloud.png",
             p = new x(0, 0, 1),
             g = new x;
         G((o, i) => {
-            if (!n.current || f.current.length === 0) return;
-            for (let pNode = n.current; pNode;) {
-                if (!pNode.visible) return;
-                pNode = pNode.parent
-            }
             for (v = o.clock.elapsedTime, B.copy(n.current.matrixWorld).invert(), o.camera.matrixWorld.decompose(T, W, O), a = 0; a < f.current.length; a++) r = f.current[a], r.ref.current.matrixWorld.decompose(U, D, O), U.add(g.copy(r.position).applyQuaternion(D).multiply(O)), D.copy(W).multiply(e.setFromAxisAngle(p, r.rotation += i * r.rotationFactor)), O.multiplyScalar(r.volume + (1 + Math.sin(v * r.density * r.speed)) / 2 * r.growth), r.matrix.compose(U, D, O).premultiply(B), r.dist = U.distanceTo(T);
             for (f.current.sort((A, Q) => Q.dist - A.dist), a = 0; a < f.current.length; a++) r = f.current[a], _[a] = r.opacity * (r.dist < r.fade - 1 ? r.dist / r.fade : 1), n.current.setMatrixAt(a, r.matrix), n.current.setColorAt(a, r.color);
             n.current.geometry.attributes.cloudOpacity.needsUpdate = !0, n.current.instanceMatrix.needsUpdate = !0, n.current.instanceColor && (n.current.instanceColor.needsUpdate = !0)
