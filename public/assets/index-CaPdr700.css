@@ -104,18 +104,18 @@ html.mobile #root .fr-text .fr-text-content>div:nth-child(2) {
 }
 
 html.mobile #root .ui-nav {
-    padding: 10px;
+    padding: 12px;
     right: 0
 }
 
 html.mobile #root .ui-nav aside {
-    --li-size: 52px;
-    --li-gap: 10px
+    --li-size: 55px;
+    --li-gap: clamp(14px, calc((100vw - 24px - var(--li-size) * 5) / 4), 28px)
 }
 
 html.mobile #root .ui-nav aside ul {
     top: 58px;
-    right: 72px
+    right: calc(var(--li-size) * 2 + var(--li-gap))
 }
 
 html.mobile #root .ui-nav aside ul>li svg {
@@ -124,37 +124,48 @@ html.mobile #root .ui-nav aside ul>li svg {
 }
 
 html.mobile #root .ui-nav aside ul>li:after {
-    font-size: x-small
-}
-
-html.mobile #root .ui-nav aside ul>li:nth-child(3):after {
-    left: -10px
+    font-size: x-small;
+    left: 50%;
+    width: max-content;
+    transform: translate(-50%, 20px)
 }
 
 html.mobile #root .ui-nav aside .burger-wrapper .burger {
-    transform: scale(1)
+    transform: scale(1);
+    padding: 10px
 }
 
 html.mobile #root .ui-nav aside .burger-wrapper .burger-box {
-    transform: scale(.65) !important
+    transform: scale(.68) !important
 }
 
-html.mobile #root .ui-nav aside .sound {
+html.mobile #root .ui-nav.ui-nav aside div.sound {
     position: absolute !important;
     bottom: 0;
-    transform: translateY(-20px) !important
+    right: 0;
+    transform: translateY(-28px) !important;
+    background: #ffffff1a;
+    border-radius: var(--li-border-radius)
 }
 
-html.mobile #root .ui-nav aside .sound>div {
-    bottom: 20px !important
+html.mobile #root .ui-nav.ui-nav aside div.sound>div {
+    bottom: 14px !important;
+    max-height: 26px;
+    gap: 5px
 }
 
-html.mobile #root .ui-nav aside .sound span {
-    max-height: 25px
+html.mobile #root .ui-nav.ui-nav aside div.sound>div:after {
+    bottom: -34px;
+    font-size: x-small
 }
 
-html.mobile #root .ui-nav aside .sound.sound--active:before {
-    transform: scale(1.1) !important
+html.mobile #root .ui-nav.ui-nav aside div.sound>div>span {
+    width: 2px;
+    max-height: 26px
+}
+
+html.mobile #root .ui-nav.ui-nav aside div.sound.sound--active:before {
+    transform: scale(1) !important
 }
 
 html.mobile #root .portfolio-item-svg {
@@ -688,6 +699,97 @@ html.isTransition *:before {
 html.html--loaded #root .ui-nav {
     transition-delay: 2s;
     opacity: 1
+}
+
+@media screen and (max-width: 768px) {
+    html,
+    body,
+    #root {
+        height: 100dvh
+    }
+    #root .ui-nav {
+        padding: 12px;
+        right: 0
+    }
+    #root .ui-nav aside {
+        --li-size: 55px;
+        --li-gap: clamp(14px, calc((100vw - 24px - var(--li-size) * 5) / 4), 28px)
+    }
+    #root .ui-nav aside ul {
+        top: 58px;
+        right: calc(var(--li-size) * 2 + var(--li-gap))
+    }
+    #root .ui-nav aside ul>li svg {
+        transform-origin: top center;
+        transform: scale(.85)
+    }
+    #root .ui-nav.ui-nav aside ul>li:after {
+        font-size: x-small;
+        left: 50%;
+        width: max-content;
+        transform: translate(-50%, 20px)
+    }
+    #root .ui-nav aside .burger-wrapper .burger {
+        transform: scale(1);
+        padding: 10px
+    }
+    #root .ui-nav aside .burger-wrapper .burger-box {
+        transform: scale(.68) !important
+    }
+    #root .ui-nav.ui-nav aside div.sound {
+        position: absolute !important;
+        bottom: 0;
+        right: 0;
+        transform: translateY(-28px) !important;
+        background: #ffffff1a;
+        border-radius: var(--li-border-radius)
+    }
+    #root .ui-nav.ui-nav aside div.sound>div {
+        bottom: 14px !important;
+        max-height: 26px;
+        gap: 5px
+    }
+    #root .ui-nav.ui-nav aside div.sound>div:after {
+        bottom: -34px;
+        font-size: x-small
+    }
+    #root .ui-nav.ui-nav aside div.sound>div>span {
+        width: 2px;
+        max-height: 26px
+    }
+    #root .ui-nav.ui-nav aside div.sound.sound--active:before {
+        transform: scale(1) !important
+    }
+}
+
+@media screen and (max-width: 359px) {
+    html.mobile #root .ui-nav,
+    #root .ui-nav {
+        padding: 10px
+    }
+    html.mobile #root .ui-nav aside,
+    #root .ui-nav aside {
+        --li-size: 48px;
+        --li-gap: clamp(10px, calc((100vw - 20px - var(--li-size) * 5) / 4), 16px)
+    }
+    html.mobile #root .ui-nav aside ul,
+    #root .ui-nav aside ul {
+        top: 52px;
+        right: calc(var(--li-size) * 2 + var(--li-gap))
+    }
+    html.mobile #root .ui-nav aside ul>li svg,
+    #root .ui-nav aside ul>li svg {
+        transform: scale(.74)
+    }
+    html.mobile #root .ui-nav aside ul>li:after,
+    #root .ui-nav.ui-nav aside ul>li:after {
+        font-size: 9px;
+        transform: translate(-50%, 18px)
+    }
+    html.mobile #root .ui-nav aside .burger-wrapper .burger,
+    #root .ui-nav aside .burger-wrapper .burger {
+        padding: 6px
+    }
 }
 
 #root>.cinematic-stripe {
@@ -1548,6 +1650,12 @@ html.html--loaded .joystick {
 
 html.mobile #root .cursor-scroll {
     display: none !important
+}
+
+@media (hover: none), (pointer: coarse), (max-width: 768px) {
+    #root .cursor-scroll {
+        display: none !important
+    }
 }
 
 html:not(.mobile) #root .cursor-scroll {
