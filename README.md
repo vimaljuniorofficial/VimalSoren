@@ -138,7 +138,7 @@ This project is pre-configured for one-click deployment on [Vercel](https://verc
 **Vimal Junior**
 
 * Frontend Developer \& Creative Designer
-* GitHub: [@vimal](https://github.com/vimalsoren)juniorofficial
+* GitHub: [@vimaljuniorofficial](https://github.com/vimaljuniorofficial)
 
 \---
 
