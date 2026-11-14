@@ -37149,40 +37149,17 @@ const wP = s => {
     },
     DP = et.lazy(() => mw(() =>
         import ("./Scene-CZcQKrv0.js").then(s => s.S), [])),
-    CanvasErrorBoundary = class extends et.Component {
-        constructor(s) {
-            super(s), this.state = {
-                hasError: !1
-            }
-        }
-        static getDerivedStateFromError() {
-            return {
-                hasError: !0
-            }
-        }
-        componentDidCatch(s) {
-            console.warn("3D Canvas error:", s);
-            const u = document.getElementById("preloader");
-            u && u.removeAttribute("class");
-            document.documentElement?.classList.add("html--loaded");
-        }
-        render() {
-            return this.state.hasError ? null : this.props.children
-        }
-    },
     UP = () => Et.jsxs(Et.Fragment, {
-        children: [Et.jsx(CanvasErrorBoundary, {
-            children: Et.jsx(cP, {
-                shadows: !0,
-                gl: {
-                    antialias: !1,
-                    powerPreference: "high-performance"
-                },
-                dpr: 1,
-                children: Et.jsx(et.Suspense, {
-                    fallback: null,
-                    children: Et.jsx(DP, {})
-                })
+        children: [Et.jsx(cP, {
+            shadows: !0,
+            gl: {
+                antialias: !1,
+                powerPreference: "high-performance"
+            },
+            dpr: 1,
+            children: Et.jsx(et.Suspense, {
+                fallback: null,
+                children: Et.jsx(DP, {})
             })
         }), Et.jsx(NP, {})]
     }),

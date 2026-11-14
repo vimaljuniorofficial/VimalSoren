@@ -167,10 +167,7 @@ function ge(s, e, t) {
         o = arguments.length > 6 && arguments[6] !== void 0 ? arguments[6] : xo,
         a = arguments.length > 7 && arguments[7] !== void 0 ? arguments[7] : .001,
         c = "velocity_" + e;
-    if (s.__damp === void 0 && (s.__damp = {}), (s.__damp[c] === void 0 || Number.isNaN(s.__damp[c])) && (s.__damp[c] = 0), Number.isNaN(s[e])) return s[e] = t, s.__damp[c] = 0, !1;
-    if (Math.abs(s[e] - t) <= a) return s[e] = t, s.__damp[c] = 0, !1;
-    if (!n || n <= 0) return s[e] = t, s.__damp[c] = 0, !1;
-    n = Math.min(n, .1);
+    if (s.__damp === void 0 && (s.__damp = {}), s.__damp[c] === void 0 && (s.__damp[c] = 0), Math.abs(s[e] - t) <= a) return s[e] = t, !1;
     i = Math.max(1e-4, i);
     var l = 2 / i,
         u = o(l * n),
@@ -181,7 +178,7 @@ function ge(s, e, t) {
     var v = (s.__damp[c] + l * f) * n;
     s.__damp[c] = (s.__damp[c] - l * v) * u;
     var _ = t + (f + v) * u;
-    return p - s[e] > 0 == _ > p && (_ = p, s.__damp[c] = (_ - p) / n), Number.isFinite(_) || (_ = t, s.__damp[c] = 0), s[e] = _, !0
+    return p - s[e] > 0 == _ > p && (_ = p, s.__damp[c] = (_ - p) / n), s[e] = _, !0
 }
 
 function Us(s, e, t, i, n, r, o, a) {
@@ -2231,7 +2228,7 @@ const Hs = () => {
             l = ct(po, s);
         return x.useEffect(() => {
             const u = o.current;
-            u && l && (u.setBuffer(l), u.setRefDistance(e), u.setLoop(t), i && !u.isPlaying && u.play())
+            u && (u.setBuffer(l), u.setRefDistance(e), u.setLoop(t), i && !u.isPlaying && u.play())
         }, [l, a, e, t]), x.useEffect(() => {
             const u = o.current;
             return a.add(c), () => {
@@ -2294,7 +2291,7 @@ function gs(s, e) {
 gs.preload = s => ct.preload(vs, s);
 gs.clear = s => ct.clear(vs, s);
 let os = null,
-    sr = "/draco/";
+    sr = "https://www.gstatic.com/draco/versioned/decoders/1.5.5/";
 
 function ir(s = !0, e = !0, t) {
     return i => {
@@ -3600,7 +3597,7 @@ const Ma = ({
             screenSize: l = window.screen,
             loadBenchmarks: u = (S => Vs(void 0, void 0, void 0, (function*() {
                 const D = typeof AbortController < "u" ? new AbortController : null,
-                    F = D ? setTimeout(() => D.abort(), 250) : null;
+                    F = D ? setTimeout(() => D.abort(), 600) : null;
                 try {
                     const R = yield fetch(`${r}/${S}`, D ? {
                         signal: D.signal
@@ -3626,7 +3623,6 @@ const Ma = ({
         let A, v = "";
         if (f) f = Cn(f), A = [f];
         else {
-            let extLose = null;
             const S = i || (function(D, F = !1) {
                 const w = {
                     alpha: !1,
@@ -3639,14 +3635,12 @@ const Ma = ({
                 D && delete w.powerPreference;
                 const z = window.document.createElement("canvas"),
                     Q = z.getContext("webgl", w) || z.getContext("experimental-webgl", w);
-                return extLose = Q ? Q.getExtension("WEBGL_lose_context") : null, Q ?? void 0
+                return Q ?? void 0
             })(Oe ?.isSafari12, n);
             if (!S) return p(0, "WEBGL_UNSUPPORTED");
             const R = Oe ?.isFirefox ? null : S.getExtension("WEBGL_debug_renderer_info");
-            if (f = R ? S.getParameter(R.UNMASKED_RENDERER_WEBGL) : S.getParameter(S.RENDERER), extLose && extLose.loseContext(), !f) return p(2, "FALLBACK");
-            v = f, f = Cn(f);
-            if (/swiftshader|llvmpipe|softpipe|software|microsoft basic render/i.test(f)) return p(1, "FALLBACK", `${f} (${v})`);
-            A = (function(D, F, w) {
+            if (f = R ? S.getParameter(R.UNMASKED_RENDERER_WEBGL) : S.getParameter(S.RENDERER), !f) return p(1, "FALLBACK");
+            v = f, f = Cn(f), A = (function(D, F, w) {
                 return F === "apple gpu" ? ya(D, F, w) : [F]
             })(S, f, c)
         }
@@ -3694,9 +3688,7 @@ const Ma = ({
         })))).filter(Sa).sort((([S = Number.MAX_VALUE, R], [D = Number.MAX_VALUE, F]) => S === D ? R - F : S - D));
         if (!_.length) {
             const S = Ta.find((R => f.includes(R)));
-            if (S) return p(0, "BLOCKLISTED", S);
-            const fallbackTier = !c && /nvidia|geforce|rtx|gtx|radeon|rx |apple m|iris|arc /i.test(f) ? 3 : 2;
-            return p(fallbackTier, "FALLBACK", `${f} (${v})`)
+            return S ? p(0, "BLOCKLISTED", S) : p(1, "FALLBACK", `${f} (${v})`)
         }
         const [, T, g, B] = _[0];
         if (T === -1) return p(0, "BLOCKLISTED", g, T, B);
@@ -3723,7 +3715,7 @@ class Da {
         blend: c = "screen",
         ease: l = xa
     } = {}) {
-        this.size = e, this.maxAge = t, this.radius = i, this.intensity = n, this.ease = l, this.interpolate = r, this.smoothing = o, this.minForce = a, this.blend = c, this.trail = [], this.force = 0, this._dirty = !1, this.initTexture()
+        this.size = e, this.maxAge = t, this.radius = i, this.intensity = n, this.ease = l, this.interpolate = r, this.smoothing = o, this.minForce = a, this.blend = c, this.trail = [], this.force = 0, this.initTexture()
     }
     initTexture() {
         this.canvas = document.createElement("canvas"), this.canvas.width = this.canvas.height = this.size;
@@ -3732,25 +3724,16 @@ class Da {
         this.ctx = e, this.ctx.fillStyle = "black", this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height), this.texture = new at(this.canvas), this.canvas.id = "touchTexture", this.canvas.style.width = this.canvas.style.height = `${this.canvas.width}px`
     }
     update(e) {
-        if (this.trail.length === 0 && !this._dirty) return;
-        const ms = e * 1e3;
-        for (let i = this.trail.length - 1; i >= 0; i--) {
-            const t = this.trail[i];
-            t.age += ms, t.age > this.maxAge && this.trail.splice(i, 1)
-        }
-        this.clear();
-        if (this.trail.length === 0) {
-            this.force = 0, this._dirty = !1, this.texture.needsUpdate = !0;
-            return
-        }
-        for (let i = 0; i < this.trail.length; i++) this.drawTouch(this.trail[i]);
-        this.texture.needsUpdate = !0
+        this.clear(), this.trail.forEach((t, i) => {
+            t.age += e * 1e3, t.age > this.maxAge && this.trail.splice(i, 1)
+        }), this.trail.length || (this.force = 0), this.trail.forEach(t => {
+            this.drawTouch(t)
+        }), this.texture.needsUpdate = !0
     }
     clear() {
         this.ctx.globalCompositeOperation = "source-over", this.ctx.fillStyle = "black", this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
     }
     addTouch(e) {
-        this._dirty = !0;
         const t = this.trail[this.trail.length - 1];
         if (t) {
             const i = t.x - e.x,
@@ -3758,7 +3741,7 @@ class Da {
                 r = i * i + n * n,
                 o = Math.max(this.minForce, Math.min(r * 1e4, 1));
             if (this.force = Ra(o, this.force, this.smoothing), this.interpolate) {
-                const a = Math.min(8, Math.ceil(r / Math.pow(this.radius * .5 / this.interpolate, 2)));
+                const a = Math.ceil(r / Math.pow(this.radius * .5 / this.interpolate, 2));
                 if (a > 1)
                     for (let c = 1; c < a; c++) this.trail.push({
                         x: t.x - i / a * c,
@@ -3768,7 +3751,7 @@ class Da {
                     })
             }
         }
-        this.trail.length > 40 && this.trail.shift(), this.trail.push({
+        this.trail.push({
             x: e.x,
             y: e.y,
             age: 0,
@@ -6087,12 +6070,8 @@ const Rn = new WeakMap,
             }
         }
         const n = x.useMemo(() => new i, []),
-            aLast = x.useRef({
-                x: -1,
-                y: -1
-            }),
             [r, o] = Oa({
-                size: 256,
+                size: 512,
                 maxAge: 800,
                 blend: "luminosity",
                 radius: .095,
@@ -6102,16 +6081,15 @@ const Rn = new WeakMap,
                 smoothing: .85
             });
         return Fe(({
+            gl: a,
             pointer: c
         }) => {
-            const nx = (c.x + 1) / 2,
-                ny = (c.y + 1) / 2;
-            (Math.abs(nx - aLast.current.x) > 5e-4 || Math.abs(ny - aLast.current.y) > 5e-4) && (aLast.current.x = nx, aLast.current.y = ny, us.x = nx, us.y = ny, o({
+            us.x = (c.x + 1) / 2, us.y = (c.y + 1) / 2, o({
                 uv: {
-                    x: nx,
-                    y: ny
+                    x: us.x,
+                    y: us.y
                 }
-            })), t.current = r
+            }), t.current = r
         }), L.jsx("primitive", {
             ref: e,
             object: n,
@@ -6202,9 +6180,9 @@ const cl = x.forwardRef((s, e) => {
             } = I.getState(), {
                 scroll: o
             } = he.getState();
-            r === "fr" && o > .96 && o < .97 && (Ht.value = 0, ds.value = 1), r === "befr" && o > .9 && o < .91 && (Ht.value = 0, ds.value = 1.5), Ht.value < 1 && ge(Ht, "value", 1, ds.value, n);
+            r === "fr" && o > .96 && o < .97 && (Ht.value = 0, ds.value = 1), r === "befr" && o > .9 && o < .91 && (Ht.value = 0, ds.value = 1.5), ge(Ht, "value", 1, ds.value, n);
             let a = t.uniforms.get("uSpeed");
-            a && (a.value = Ht.value), t.blendMode && (t.blendMode.opacity.value = Ht.value >= .999 ? 0 : 1)
+            a && (a.value = Ht.value)
         }), L.jsx("primitive", {
             ref: e,
             object: t,
@@ -6271,7 +6249,7 @@ const dl = x.forwardRef((s, e) => {
             scroll: n
         } = he.getState(), r = (n - t) * 20;
         let o = i.uniforms.get("uSpeed");
-        o && (o.value = r), i.blendMode && (i.blendMode.opacity.value = Math.abs(r) < 1e-3 ? 0 : 1), t = n
+        o && (o.value = r), t = n
     }), L.jsx("primitive", {
         ref: e,
         object: i,
@@ -8003,13 +7981,9 @@ function jl(s = !0) {
     s && !document.querySelector("#root") ?.classList.contains("active") && document.querySelector("#root") ?.classList.add("active"), !s && document.querySelector("#root") ?.classList.contains("active") && document.querySelector("#root") ?.classList.remove("active")
 }
 
-const _hdriCache = new Map;
 function wn(s) {
-    if (_hdriCache.has(s)) return _hdriCache.get(s);
     const e = new So;
-    e.setPath(s);
-    const t = e.load(["px.png", "nx.png", "py.png", "ny.png", "pz.png", "nz.png"]);
-    return _hdriCache.set(s, t), t
+    return e.setPath(s), e.load(["px.png", "nx.png", "py.png", "ny.png", "pz.png", "nz.png"])
 }
 
 function Ql(s) {
@@ -8029,16 +8003,10 @@ function Ql(s) {
 function Vl(s, e) {
     const {
         mobile: t
-    } = I.getState(), {
+    } = I.getState(), i = wn(t ? "/hdri/sunrise/mobile/" : "/hdri/sunrise/"), n = wn(t ? "/hdri/sunshine/mobile/" : "/hdri/sunshine/"), {
         fog: r
     } = s;
-    if (e === "sunshine") {
-        const n = wn(t ? "/hdri/sunshine/mobile/" : "/hdri/sunshine/");
-        s.background = n, s.environment = n, r instanceof Qi && (r.color.set("hsl(196,70%,63%)"), r.far = 430)
-    } else if (e === "sunrise") {
-        const i = wn(t ? "/hdri/sunrise/mobile/" : "/hdri/sunrise/");
-        s.background = i, s.environment = i, r instanceof Qi && (r.color.set("hsl(325,15%,45%)"), r.far = I.getState().fog_init_value)
-    }
+    e === "sunshine" && (s.background = n, s.environment = n, r instanceof Qi && (r.color.set("hsl(196,70%,63%)"), r.far = 430)), e === "sunrise" && (s.background = i, s.environment = i, r instanceof Qi && (r.color.set("hsl(325,15%,45%)"), r.far = I.getState().fog_init_value))
 }
 
 function fs(s, e = [], t = []) {
@@ -8086,16 +8054,15 @@ const Sl = () => {
             }, 4e3)
         }), []);
         let o = 0;
-        const pEl = x.useRef(null);
         return Fe(({
             camera: a,
             clock: c
         }, l) => {
-            const {
-                transition: f
-            } = I.getState();
+            const u = document.getElementById("preloader"),
+                {
+                    transition: f
+                } = I.getState();
             if (!f) return;
-            const u = pEl.current || (pEl.current = document.getElementById("preloader"));
             const {
                 country: p
             } = I.getState();
@@ -8140,18 +8107,16 @@ const Sl = () => {
             t = x.useRef(null),
             i = x.useRef(null),
             n = x.useRef(null),
-            uCountryRef = x.useRef(0),
-            r = x.useMemo(() => {
-                const M = ma({
-                    uTime: 0,
-                    uCountry: 0,
-                    uColor: new ve("hsl(0,0%,76%)"),
-                    uTextureCountry: s,
-                    uTextureEnter: e,
-                    uTransition: 0,
-                    uTransitionNumber: 0,
-                    uResolution: new Z(innerWidth, innerHeight)
-                }, `
+            r = ma({
+                uTime: 0,
+                uCountry: 0,
+                uColor: new ve("hsl(0,0%,76%)"),
+                uTextureCountry: s,
+                uTextureEnter: e,
+                uTransition: 0,
+                uTransitionNumber: 0,
+                uResolution: new Z(innerWidth, innerHeight)
+            }, `
         varying vec2 vUv;
         void main() {
           vUv = uv;
@@ -8214,21 +8179,10 @@ const Sl = () => {
           #include <colorspace_fragment>
         }
       `);
-                return vi({
-                    IntroTransitionMaterial: M
-                }), M
-            }, []);
         Sl();
-        const oRef = x.useRef({
-                value: 0
-            }),
-            o = oRef.current;
-        const applyCountry = val => {
-            uCountryRef.current = val, n.current ?.uniforms && (n.current.uniforms.uCountry.value = val)
+        let o = {
+            value: 0
         };
-        x.useLayoutEffect(() => {
-            n.current ?.uniforms && (n.current.uniforms.uCountry.value = uCountryRef.current, n.current.uniforms.uTextureCountry.value = s, n.current.uniforms.uTextureEnter.value = e)
-        }, [s, e]);
         return x.useEffect(() => {
             const a = Ci();
             return I.subscribe(c => c.scene_loaded_after_progress, c => {
@@ -8272,7 +8226,6 @@ const Sl = () => {
                             try {
                                 a.playAll()
                             } catch {}
-                            u && u.removeAttribute("class");
                             const cs = document.querySelector(".cursor-scroll");
                             cs && cs.classList.remove("cursor-scroll--hidden"), f && f.remove()
                         }, 2e3)
@@ -8285,28 +8238,26 @@ const Sl = () => {
                     } = g;
                     y === "clip-path" && b === "::before" && T()
                 }, !1), T()
-            }, {
-                fireImmediately: !0
             })
         }, []), x.useEffect(() => I.subscribe(a => a.transitionCountry, a => {
             switch (i.current = document.querySelectorAll(".__html"), a) {
                 case "frlux":
-                    applyCountry(0);
+                    n.current.uniforms.uCountry.value = 0;
                     break;
                 case "lux":
-                    applyCountry(1);
+                    n.current.uniforms.uCountry.value = 1;
                     break;
                 case "luxbe":
-                    applyCountry(1);
+                    n.current.uniforms.uCountry.value = 1;
                     break;
                 case "be":
-                    applyCountry(2);
+                    n.current.uniforms.uCountry.value = 2;
                     break;
                 case "befr":
-                    applyCountry(2);
+                    n.current.uniforms.uCountry.value = 2;
                     break;
                 default:
-                    applyCountry(0);
+                    n.current.uniforms.uCountry.value = 0;
                     break
             }
         }, {
@@ -8315,34 +8266,36 @@ const Sl = () => {
             const {
                 country: c
             } = I.getState();
-            c === "frlux" && a > .34 && applyCountry(1)
-        }), []), x.useEffect(() => I.subscribe(a => a.transition, a => {
-            const c = document.documentElement;
-            switch (a) {
-                case "onEnter":
-                    c ?.classList.add("isTransition");
-                    break;
-                case "onExit":
-                    c ?.classList.remove("isTransition");
-                    break
-            }
-        }), []), x.useEffect(() => I.subscribe(a => a.transitionProgress, a => {
-            i.current && i.current.forEach(c => {
-                c.style.opacity = Math.pow(a, 8)
+            c === "frlux" && a > .34 && (n.current.uniforms.uCountry.value = 1)
+        }), []), x.useEffect(() => {
+            I.subscribe(a => a.transition, a => {
+                const c = document.documentElement;
+                switch (a) {
+                    case "onEnter":
+                        c.classList.add("isTransition");
+                        break;
+                    case "onExit":
+                        c.classList.remove("isTransition");
+                        break
+                }
             })
-        }), []);
-        const pRef = x.useRef(null),
-            cRef = x.useRef(null);
-        return Fe(({
+        }, []), x.useEffect(() => {
+            I.subscribe(a => a.transitionProgress, a => {
+                i.current && i.current.forEach(c => {
+                    c.style.opacity = Math.pow(a, 8)
+                })
+            })
+        }, []), Fe(({
             camera: a,
             clock: c
         }, l) => {
-            const {
-                transitionProgress: f,
-                transition: p,
-                scene_load_progress: A,
-                scene_loaded_after_progress: v
-            } = I.getState();
+            const u = document.getElementById("preloader"),
+                {
+                    transitionProgress: f,
+                    transition: p,
+                    scene_load_progress: A,
+                    scene_loaded_after_progress: v
+                } = I.getState();
             let _ = null,
                 T = 0;
             switch (p) {
@@ -8353,16 +8306,17 @@ const Sl = () => {
                     _ = 2;
                     break
             }
-            if (t.current && t.current.position.copy(a.position), n.current ?.uniforms && (n.current.uniforms.uTime.value = c.getElapsedTime(), n.current.uniforms.uResolution.value.x = innerWidth, n.current.uniforms.uResolution.value.y = innerHeight, n.current.uniforms.uTransition.value = f, n.current.uniforms.uTransitionNumber.value = _, n.current.uniforms.uCountry.value = uCountryRef.current), +A <= 1 && !v) {
+            if (t.current && t.current.position.copy(a.position.clone()), n.current && (n.current.uniforms.uTime.value = c.getElapsedTime(), n.current.uniforms.uResolution.value.x = innerWidth, n.current.uniforms.uResolution.value.y = innerHeight, n.current.uniforms.uTransition.value = f, n.current.uniforms.uTransitionNumber.value = _), +A <= 1 && !v) {
                 ge(o, "value", A, .35, l), A >= 1 && o.value > .99 && (o.value = 1);
-                const u = pRef.current || (pRef.current = document.getElementById("preloader")),
-                    g = cRef.current && cRef.current.isConnected ? cRef.current : (cRef.current = u ?.querySelector("code"));
+                const g = u ?.querySelector("code");
                 T = Math.min(100, Math.round(o.value.toFixed(2) * 100));
                 const B = T.toString().padStart(3, "0");
                 g && (g.innerText = B)
             }(+T >= 100 || A >= 1 && o.value >= .99) && !v && I.setState({
                 scene_loaded_after_progress: !0
             })
+        }), vi({
+            IntroTransitionMaterial: r
         }), L.jsx(L.Fragment, {
             children: L.jsxs("mesh", {
                 "position-z": -5,
@@ -8372,8 +8326,6 @@ const Sl = () => {
                     args: [2, 2]
                 }), L.jsx("introTransitionMaterial", {
                     ref: n,
-                    uTextureCountry: s,
-                    uTextureEnter: e,
                     transparent: !0,
                     toneMapped: !1,
                     depthTest: !1,
@@ -8489,24 +8441,6 @@ const Sl = () => {
             makeDefault: !0
         })
     },
-    SceneErrorBoundary = class extends x.Component {
-        constructor(s) {
-            super(s), this.state = {
-                hasError: !1
-            }
-        }
-        static getDerivedStateFromError() {
-            return {
-                hasError: !0
-            }
-        }
-        componentDidCatch(s) {
-            console.warn("Scene child error:", s)
-        }
-        render() {
-            return this.state.hasError ? null : this.props.children
-        }
-    },
     Ll = () => {
         const {
             isMobile: s,
@@ -8515,32 +8449,36 @@ const Sl = () => {
         return x.useEffect(() => I.subscribe(i => i.country, i => {
             (i === "fr" || i === "befr2") && t.current && (t.current.color.set("hsl(325,15%,45%)"), t.current.near = 0, t.current.far = I.getState().fog_init_value)
         }), []), x.useEffect(() => {
-            I.setState({
-                fog: t.current
-            });
-            const fallbackTimer = setTimeout(() => {
-                I.getState().scene_loaded || I.setState({
-                    scene_load_progress: 1,
-                    scene_loaded: !0
+            Vi.onProgress = function(i, n, r) {
+                const o = Math.min(n / Math.max(r || 1, 1), 1);
+                o > I.getState().scene_load_progress && I.setState({
+                    scene_load_progress: o
                 })
-            }, 5e3);
-            return () => clearTimeout(fallbackTimer)
+            }, Vi.onLoad = function() {
+                I.setState({
+                    scene_load_progress: 1
+                }), setTimeout(() => {
+                    I.setState({
+                        scene_loaded: !0
+                    })
+                }, 50)
+            }, I.setState({
+                fog: t.current
+            })
         }, []), L.jsxs(L.Fragment, {
             children: [L.jsx(Ml, {}), bl(), L.jsx("fog", {
                 attach: "fog",
                 ref: t,
                 args: ["hsl(325,15%,45%)", 0, I.getState().fog_init_value]
-            }), L.jsx(SceneErrorBoundary, {
-                children: L.jsxs(x.Suspense, {
-                    fallback: null,
-                    children: [L.jsxs("group", {
-                        name: "world",
-                        children: [L.jsx(xl, {}), L.jsx(Il, {}), L.jsx(Dl, {}), L.jsx(Ol, {})]
-                    }), L.jsx(Ul, {}), L.jsx(Rl, {}), L.jsx(Fl, {}), L.jsx(Fa, {
-                        pixelated: !0
-                    }), L.jsx(Ua, {})]
-                })
-            }), e >= 3 && L.jsx(SceneErrorBoundary, {
+            }), L.jsxs(x.Suspense, {
+                fallback: null,
+                children: [L.jsxs("group", {
+                    name: "world",
+                    children: [L.jsx(xl, {}), L.jsx(Il, {}), L.jsx(Dl, {}), L.jsx(Ol, {})]
+                }), L.jsx(Ul, {}), L.jsx(Rl, {}), L.jsx(Fl, {}), L.jsx(Fa, {
+                    pixelated: !0
+                }), L.jsx(Ua, {}), L.jsx(Ia, {})]
+            }), e >= 3 && L.jsx(L.Fragment, {
                 children: L.jsxs($c, {
                     disableNormalPass: !0,
                     children: [L.jsx(cl, {}), L.jsx(nl, {}), L.jsx(dl, {}), L.jsx(sl, {
@@ -8553,24 +8491,6 @@ const Sl = () => {
             })]
         })
     };
-Vi.onProgress = function(i, n, r) {
-    const o = Math.min(n / Math.max(r || 1, 1), 1);
-    o > I.getState().scene_load_progress && I.setState({
-        scene_load_progress: o
-    })
-};
-Vi.onLoad = function() {
-    I.setState({
-        scene_load_progress: 1
-    }), setTimeout(() => {
-        I.setState({
-            scene_loaded: !0
-        })
-    }, 50)
-};
-Vi.onError = function(i) {
-    console.warn("Asset load warning:", i)
-};
 ht.preload(I.getState().fr_glb_path);
 ht.preload(I.getState().lu_glb_path);
 ht.preload(I.getState().be_glb_path);
