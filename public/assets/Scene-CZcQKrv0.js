@@ -8219,9 +8219,10 @@ const Sl = () => {
                 }), M
             }, []);
         Sl();
-        let o = {
-            value: 0
-        };
+        const oRef = x.useRef({
+                value: 0
+            }),
+            o = oRef.current;
         const applyCountry = val => {
             uCountryRef.current = val, n.current ?.uniforms && (n.current.uniforms.uCountry.value = val)
         };
@@ -8271,6 +8272,7 @@ const Sl = () => {
                             try {
                                 a.playAll()
                             } catch {}
+                            u && u.removeAttribute("class");
                             const cs = document.querySelector(".cursor-scroll");
                             cs && cs.classList.remove("cursor-scroll--hidden"), f && f.remove()
                         }, 2e3)
@@ -8487,6 +8489,24 @@ const Sl = () => {
             makeDefault: !0
         })
     },
+    SceneErrorBoundary = class extends x.Component {
+        constructor(s) {
+            super(s), this.state = {
+                hasError: !1
+            }
+        }
+        static getDerivedStateFromError() {
+            return {
+                hasError: !0
+            }
+        }
+        componentDidCatch(s) {
+            console.warn("Scene child error:", s)
+        }
+        render() {
+            return this.state.hasError ? null : this.props.children
+        }
+    },
     Ll = () => {
         const {
             isMobile: s,
@@ -8510,15 +8530,17 @@ const Sl = () => {
                 attach: "fog",
                 ref: t,
                 args: ["hsl(325,15%,45%)", 0, I.getState().fog_init_value]
-            }), L.jsxs(x.Suspense, {
-                fallback: null,
-                children: [L.jsxs("group", {
-                    name: "world",
-                    children: [L.jsx(xl, {}), L.jsx(Il, {}), L.jsx(Dl, {}), L.jsx(Ol, {})]
-                }), L.jsx(Ul, {}), L.jsx(Rl, {}), L.jsx(Fl, {}), L.jsx(Fa, {
-                    pixelated: !0
-                }), L.jsx(Ua, {})]
-            }), e >= 3 && L.jsx(L.Fragment, {
+            }), L.jsx(SceneErrorBoundary, {
+                children: L.jsxs(x.Suspense, {
+                    fallback: null,
+                    children: [L.jsxs("group", {
+                        name: "world",
+                        children: [L.jsx(xl, {}), L.jsx(Il, {}), L.jsx(Dl, {}), L.jsx(Ol, {})]
+                    }), L.jsx(Ul, {}), L.jsx(Rl, {}), L.jsx(Fl, {}), L.jsx(Fa, {
+                        pixelated: !0
+                    }), L.jsx(Ua, {})]
+                })
+            }), e >= 3 && L.jsx(SceneErrorBoundary, {
                 children: L.jsxs($c, {
                     disableNormalPass: !0,
                     children: [L.jsx(cl, {}), L.jsx(nl, {}), L.jsx(dl, {}), L.jsx(sl, {

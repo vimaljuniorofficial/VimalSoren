@@ -380,12 +380,12 @@
             }
         }
     </style>
-    <script type="module" crossorigin src="/assets/index-DWN9ksCY.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/Scene-CZcQKrv0.js">
-    <link rel="modulepreload" crossorigin href="/assets/Model-o_CKNeKc.js">
-    <link rel="modulepreload" crossorigin href="/assets/Vimal-DjQbSfGn.js">
-    <link rel="modulepreload" crossorigin href="/assets/CountryFrance-BOVm_uA2.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-CaPdr700.css">
+    <script type="module" src="/assets/index-DWN9ksCY.js"></script>
+    <link rel="modulepreload" href="/assets/Scene-CZcQKrv0.js">
+    <link rel="modulepreload" href="/assets/Model-o_CKNeKc.js">
+    <link rel="modulepreload" href="/assets/Vimal-DjQbSfGn.js">
+    <link rel="modulepreload" href="/assets/CountryFrance-BOVm_uA2.js">
+    <link rel="stylesheet" href="/assets/index-CaPdr700.css">
 </head>
 
 <body>
@@ -396,7 +396,7 @@
         </div>
         <div class="city"></div>
         <div class="preloader-enter">
-            <a href="javascript:void(0)" class="button-start"> start </a>
+            <a href="#start" class="button-start"> start </a>
             <p>For the best experience</p>
             <p>Turn your sound on / Switch to desktop</p>
         </div>
@@ -422,7 +422,7 @@
 |_____||_____||___||_|_|_||  _||___||_|_||___|
                          |_|                 
                                              `);
-        document.addEventListener("DOMContentLoaded", () => {
+        const onReady = () => {
             const preloader = document.querySelector("#preloader>div");
             const cookie = document.querySelector("#cookie");
             if (preloader) preloader.classList.add("active");
@@ -472,7 +472,12 @@
                     gtag("config", "G-N9QMHXG4X1");
                 } catch (e) {}
             }
-        });
+        };
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", onReady);
+        } else {
+            onReady();
+        }
     </script>
 </body>
 
