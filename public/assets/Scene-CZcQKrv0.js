@@ -2291,7 +2291,7 @@ function gs(s, e) {
 gs.preload = s => ct.preload(vs, s);
 gs.clear = s => ct.clear(vs, s);
 let os = null,
-    sr = "https://www.gstatic.com/draco/versioned/decoders/1.5.5/";
+    sr = "/draco/";
 
 function ir(s = !0, e = !0, t) {
     return i => {
