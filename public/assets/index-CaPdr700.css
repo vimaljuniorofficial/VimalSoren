@@ -127,12 +127,17 @@ html.mobile #root .ui-nav aside ul>li:after {
     font-size: x-small;
     left: 50%;
     width: max-content;
-    transform: translate(-50%, 20px)
+    transform: translate(-50%, 26px)
 }
 
 html.mobile #root .ui-nav aside .burger-wrapper .burger {
     transform: scale(1);
     padding: 10px
+}
+
+html.mobile #root .ui-nav aside .burger-wrapper .burger:after {
+    bottom: -14px;
+    font-size: x-small
 }
 
 html.mobile #root .ui-nav aside .burger-wrapper .burger-box {
@@ -144,7 +149,7 @@ html.mobile #root .ui-nav.ui-nav aside div.sound {
     bottom: 0;
     right: 0;
     transform: translateY(-28px) !important;
-    background: #ffffff1a;
+    background: transparent;
     border-radius: var(--li-border-radius)
 }
 
@@ -155,7 +160,7 @@ html.mobile #root .ui-nav.ui-nav aside div.sound>div {
 }
 
 html.mobile #root .ui-nav.ui-nav aside div.sound>div:after {
-    bottom: -34px;
+    bottom: -38px;
     font-size: x-small
 }
 
@@ -164,8 +169,11 @@ html.mobile #root .ui-nav.ui-nav aside div.sound>div>span {
     max-height: 26px
 }
 
-html.mobile #root .ui-nav.ui-nav aside div.sound.sound--active:before {
-    transform: scale(1) !important
+html.mobile #root .ui-nav.ui-nav aside div.sound:active:before {
+    transform: scale(.92) !important;
+    background-color: #ffffff1a;
+    border: 1px solid white;
+    opacity: .45 !important
 }
 
 html.mobile #root .portfolio-item-svg {
@@ -614,7 +622,7 @@ html.isTransition *:before {
     animation: volumeAnimation 1.3s ease infinite alternate
 }
 
-:is(:is(#root .ui-nav>aside>div.burger-wrapper, #root .ui-nav>aside li, #root .ui-nav>aside>div.sound).sound:hover, :is(#root .ui-nav>aside>div.burger-wrapper, #root .ui-nav>aside li, #root .ui-nav>aside>div.sound).sound a:active):before {
+:is(:is(#root .ui-nav>aside>div.burger-wrapper, #root .ui-nav>aside li, #root .ui-nav>aside>div.sound).sound:hover, :is(#root .ui-nav>aside>div.burger-wrapper, #root .ui-nav>aside li, #root .ui-nav>aside>div.sound).sound:active):before {
     transform: scale(.8);
     background-color: #ffffff1a;
     opacity: .25
@@ -727,11 +735,15 @@ html.html--loaded #root .ui-nav {
         font-size: x-small;
         left: 50%;
         width: max-content;
-        transform: translate(-50%, 20px)
+        transform: translate(-50%, 26px)
     }
     #root .ui-nav aside .burger-wrapper .burger {
         transform: scale(1);
         padding: 10px
+    }
+    #root .ui-nav aside .burger-wrapper .burger:after {
+        bottom: -14px;
+        font-size: x-small
     }
     #root .ui-nav aside .burger-wrapper .burger-box {
         transform: scale(.68) !important
@@ -741,7 +753,7 @@ html.html--loaded #root .ui-nav {
         bottom: 0;
         right: 0;
         transform: translateY(-28px) !important;
-        background: #ffffff1a;
+        background: transparent;
         border-radius: var(--li-border-radius)
     }
     #root .ui-nav.ui-nav aside div.sound>div {
@@ -750,15 +762,30 @@ html.html--loaded #root .ui-nav {
         gap: 5px
     }
     #root .ui-nav.ui-nav aside div.sound>div:after {
-        bottom: -34px;
+        bottom: -38px;
         font-size: x-small
     }
     #root .ui-nav.ui-nav aside div.sound>div>span {
         width: 2px;
         max-height: 26px
     }
-    #root .ui-nav.ui-nav aside div.sound.sound--active:before {
-        transform: scale(1) !important
+    #root .ui-nav.ui-nav aside div.sound:active:before {
+        transform: scale(.92) !important;
+        background-color: #ffffff1a;
+        border: 1px solid white;
+        opacity: .45 !important
+    }
+}
+
+@media (hover: none) {
+    #root .ui-nav.ui-nav aside div.sound:hover:before {
+        opacity: 0
+    }
+    #root .ui-nav.ui-nav aside div.sound:active:before {
+        transform: scale(.92) !important;
+        background-color: #ffffff1a;
+        border: 1px solid white;
+        opacity: .45 !important
     }
 }
 
@@ -784,7 +811,7 @@ html.html--loaded #root .ui-nav {
     html.mobile #root .ui-nav aside ul>li:after,
     #root .ui-nav.ui-nav aside ul>li:after {
         font-size: 9px;
-        transform: translate(-50%, 18px)
+        transform: translate(-50%, 22px)
     }
     html.mobile #root .ui-nav aside .burger-wrapper .burger,
     #root .ui-nav aside .burger-wrapper .burger {
