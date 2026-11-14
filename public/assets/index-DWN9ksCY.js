@@ -37166,40 +37166,103 @@ class _SceneErrorBoundary extends et.Component {
         e && e.remove()
     }
     render() {
-        return this.state.error ? Et.jsx("div", {
+        const s = this.state.error,
+            e = s ? (s.message || String(s)) : "";
+        return s ? Et.jsx("div", {
             style: {
                 position: "fixed",
                 inset: 0,
                 display: "grid",
                 placeItems: "center",
                 background: "#e4e4e4",
-                color: "#333",
+                color: "#222",
                 fontFamily: "sans-serif",
                 padding: "24px",
                 textAlign: "center",
                 zIndex: 2147483601
             },
             children: Et.jsxs("div", {
+                style: {
+                    maxWidth: "520px"
+                },
                 children: [Et.jsx("h2", {
-                    children: "Unable to initialize 3D WebGL scene"
+                    children: /webgl/i.test(e) ? "Unable to initialize 3D WebGL scene" : "Unable to load 3D scene"
                 }), Et.jsx("p", {
-                    children: "Please ensure hardware acceleration / WebGL is enabled in your browser and reload the page."
+                    children: /webgl/i.test(e) ? "Please ensure WebGL / hardware acceleration is enabled in your browser and reload the page." : "An error occurred while loading the 3D scene."
+                }), e && Et.jsx("p", {
+                    style: {
+                        fontSize: "12px",
+                        opacity: 0.7,
+                        wordBreak: "break-word"
+                    },
+                    children: e
+                }), Et.jsx("button", {
+                    onClick: () => window.location.reload(),
+                    style: {
+                        marginTop: "12px",
+                        padding: "10px 20px",
+                        background: "#8b7082",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: "4px",
+                        cursor: "pointer"
+                    },
+                    children: "Reload"
                 })]
             })
         }) : this.props.children
     }
 }
-const UP = () => Et.jsxs(_SceneErrorBoundary, {
-        children: [Et.jsx(cP, {
-            shadows: !0,
-            gl: {
-                antialias: !1,
-                powerPreference: "high-performance"
-            },
-            dpr: 1,
+const _createGlRenderer = s => {
+        const e = [{
+            canvas: s,
+            antialias: !1,
+            alpha: !0,
+            powerPreference: "high-performance"
+        }, {
+            canvas: s,
+            antialias: !1,
+            alpha: !0,
+            powerPreference: "default",
+            failIfMajorPerformanceCaveat: !1
+        }];
+        for (const t of e) try {
+            return new Nv(t)
+        } catch {}
+        const n = {
+            alpha: !0,
+            antialias: !1,
+            depth: !0,
+            stencil: !0,
+            failIfMajorPerformanceCaveat: !1
+        };
+        for (const t of ["webgl2", "webgl", "experimental-webgl"]) {
+            const i = s.getContext(t, n);
+            if (i) return new Nv({
+                canvas: s,
+                context: i,
+                alpha: !0
+            })
+        }
+        return new Nv({
+            canvas: s,
+            antialias: !1,
+            alpha: !0
+        })
+    },
+    UP = () => Et.jsxs(Et.Fragment, {
+        children: [Et.jsx(_SceneErrorBoundary, {
             children: Et.jsx(et.Suspense, {
                 fallback: null,
-                children: Et.jsx(DP, {})
+                children: Et.jsx(cP, {
+                    shadows: !0,
+                    gl: _createGlRenderer,
+                    dpr: 1,
+                    children: Et.jsx(et.Suspense, {
+                        fallback: null,
+                        children: Et.jsx(DP, {})
+                    })
+                })
             })
         }), Et.jsx(NP, {})]
     }),
