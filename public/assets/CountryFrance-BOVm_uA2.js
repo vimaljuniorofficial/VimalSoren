@@ -2320,20 +2320,20 @@ function en(n) {
 const rn = () => {
         const {
             mobile: n
-        } = pe.getState(), t = ma(), i = D.useRef(t), o = D.useRef(null), u = new Ze(-20, 8, -43), d = 10, isMobileView = () => n || window.innerWidth < window.innerHeight || window.innerWidth <= 768;
+        } = pe.getState(), t = ma(), i = D.useRef(t), o = D.useRef(null), u = n ? new Ze(-20, 8, -43) : new Ze(-20, 8, -43), d = 10;
         return D.useEffect(() => pe.subscribe(h => h.country, h => {
             const m = [document.querySelector(".fr-text-content"), ...document.querySelectorAll(".fr-description")].filter(Boolean);
             ua() ? m.forEach(f => f?.classList.remove("active")) : ([...document.querySelectorAll(".fr-description")].forEach(p => p?.classList.add("active")), h === "frlux" ? document.querySelector(".fr-text-content")?.classList.add("active") : document.querySelector(".fr-text-content")?.classList.remove("active"))
         }), []), D.useEffect(() => $e.subscribe(h => h.scroll, h => {
             const {
                 country: m
-            } = pe.getState(), f = document.querySelector(".fr-text-content"), mob = isMobileView();
+            } = pe.getState(), f = document.querySelector(".fr-text-content");
             if (m === "fr" && h >= .95 && f && !f.classList.contains("active") && f.classList.add("active"), m === "frlux") {
                 if (h > 0) {
                     const p = document.querySelector(".fr-text-content>div");
                     if (!p) return;
-                    if (mob) {
-                        const C = -40 - h * 15e3;
+                    if (n) {
+                        const C = 480 - h * 15e3;
                         p.style.transform = `translateY(${C}px)`
                     } else {
                         const C = 410 - h * 15e3;
@@ -2343,19 +2343,19 @@ const rn = () => {
             } else {
                 const p = document.querySelector(".fr-text-content>div");
                 if (!p) return;
-                mob ? p.style.transform = "translateY(-40px)" : p.style.transform = "perspective(250px) translateY(410px) rotateX(0deg) rotateY(0deg)"
+                n ? p.style.transform = "translateY(480px)" : p.style.transform = "perspective(250px) translateY(410px) rotateX(0deg) rotateY(0deg)"
             }
         }), []), Rr(() => {
             const {
                 scroll: h
             } = $e.getState(), {
                 country: m
-            } = pe.getState(), mob = isMobileView(), f = document.querySelector(".fr-description.a .span"), p = document.querySelector(".fr-description.b .span"), C = document.querySelector(".fr-description.c .span"), I = document.querySelector(".fr-description.d .span");
+            } = pe.getState(), f = document.querySelector(".fr-description.a .span"), p = document.querySelector(".fr-description.b .span"), C = document.querySelector(".fr-description.c .span"), I = document.querySelector(".fr-description.d .span");
             if (m === "fr" ? (h > .15 && f ?.classList.add("active"), h > .2 && p ?.classList.add("active"), h > .25 && C ?.classList.add("active"), h > .3 && I ?.classList.add("active"), h < .1 && (f ?.classList.remove("active"), p ?.classList.remove("active"), C ?.classList.remove("active"), I ?.classList.remove("active"))) : (f ?.classList.remove("active"), p ?.classList.remove("active"), C ?.classList.remove("active"), I ?.classList.remove("active")), m === "frlux") {
                 const b = document.querySelector(".fr-text-content > div");
                 if (b) {
-                    if (mob) {
-                        const U = -40 - h * 15e3;
+                    if (n) {
+                        const U = 480 - h * 15e3;
                         b.style.transform = `translateY(${U}px)`
                     } else {
                         const U = 410 - h * 15e3;

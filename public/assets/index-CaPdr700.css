@@ -79,61 +79,28 @@ html.mobile #root .main-title h2 {
 }
 
 html.mobile #root .fr-text .fr-text-content.active {
-    transform-origin: top center;
-    transform: translate(-35px, -110px) scale(1.05);
-    max-width: 540px
+    transform-origin: top;
+    transform: scale(1.8) translateY(20vh) translate(-20px)
 }
 
 html.mobile #root .fr-text .fr-text-content.active h1 {
-    transform: scaleX(2);
-    font-size: 3.4rem;
-    height: 60px
+    transform: scaleX(2)
 }
 
 html.mobile #root .fr-text .fr-text-content.active>div:nth-child(1) {
-    width: 100%;
-    margin-left: 0;
-    padding: 18px 24px;
-    margin-top: 0
+    width: 120%;
+    margin-left: -25%;
+    padding: 25px;
+    margin-top: -70dvh
 }
 
 html.mobile #root .fr-text .fr-text-content.active>div:nth-child(1) p {
-    font-size: 16px;
-    line-height: 1.35;
-    margin: 8px 0;
+    font-size: 20px;
     text-wrap: balance
 }
 
 html.mobile #root .fr-text .fr-text-content>div:nth-child(2) {
     visibility: hidden
-}
-
-@media(max-width:768px) {
-    html:not(.mobile) #root .fr-text .fr-text-content.active {
-        transform-origin: top center;
-        transform: translate(-35px, -110px) scale(1.05);
-        max-width: 540px
-    }
-    html:not(.mobile) #root .fr-text .fr-text-content.active h1 {
-        transform: scaleX(2);
-        font-size: 3.4rem;
-        height: 60px
-    }
-    html:not(.mobile) #root .fr-text .fr-text-content.active>div:nth-child(1) {
-        width: 100%;
-        margin-left: 0;
-        padding: 18px 24px;
-        margin-top: 0
-    }
-    html:not(.mobile) #root .fr-text .fr-text-content.active>div:nth-child(1) p {
-        font-size: 16px;
-        line-height: 1.35;
-        margin: 8px 0;
-        text-wrap: balance
-    }
-    html:not(.mobile) #root .fr-text .fr-text-content>div:nth-child(2) {
-        visibility: hidden
-    }
 }
 
 html.mobile #root .ui-nav {
