@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "PORT=3000 node server.js",
     "build": "node -e \"console.log('Build completed successfully')\"",
+    "lint": "node --check server.js",
     "start": "node server.js"
   },
   "dependencies": {

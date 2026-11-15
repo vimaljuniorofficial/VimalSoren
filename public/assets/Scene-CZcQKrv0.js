@@ -7951,36 +7951,42 @@ const bl = () => {
                 s.getObjectByName("world") ?.translateX(-t)
             }, 2e3)
         })
-    }, [e, s]), x.useEffect(() => {
-        if (!e) return;
-        return I.subscribe(i => i.teleportation, () => {
-            const {
-                country: i
-            } = I.getState();
-            if (i !== "fr") {
-                const n = s.getObjectByName("world");
-                n && (n.position.x = 0)
-            }
-        })
-    }, [e, s]), Fe(({
+    }, [e, s]), x.useEffect(() => I.subscribe(i => i.teleportation, () => {
+        const {
+            country: i
+        } = I.getState(), n = s.getObjectByName("world"), a = e || window.innerWidth < window.innerHeight;
+        n && (i === "frlux" && a ? n.position.set(.07, 0, -2.34) : i !== "fr" && n.position.set(0, 0, 0))
+    }), [e, s]), Fe(({
         scene: i
     }) => {
-        if (!e) return;
-        const {
-            country: n
-        } = I.getState(), {
-            scroll: r
-        } = he.getState();
+        const a = e || window.innerWidth < window.innerHeight,
+            {
+                country: n
+            } = I.getState(),
+            {
+                scroll: r
+            } = he.getState(),
+            o = i.getObjectByName("world");
+        if (!o) return;
+        if (!a) {
+            (o.position.x !== 0 || o.position.z !== 0) && o.position.set(0, 0, 0);
+            return
+        }
         if (n === "fr") {
-            const o = i.getObjectByName("world"),
-                a = t - r * t;
-            o && (o.position.x = -a)
-        }
-        if (n === "befr2") {
-            const o = i.getObjectByName("world"),
-                a = t + r * t;
-            o && (o.position.x = -a)
-        }
+            if (r < .85) {
+                const c = t * (1 - r / .85);
+                o.position.set(-c, 0, 0)
+            } else {
+                const c = (r - .85) / .15;
+                o.position.set(.07 * c, 0, -2.34 * c)
+            }
+        } else if (n === "frlux") {
+            const c = Math.max(0, 1 - r / .025);
+            o.position.set(.07 * c, 0, -2.34 * c)
+        } else if (n === "befr2") {
+            const c = t + r * t;
+            o.position.set(-c, 0, 0)
+        } else(o.position.x !== 0 || o.position.z !== 0) && o.position.set(0, 0, 0)
     })
 };
 
@@ -8433,16 +8439,18 @@ const Sl = () => {
         import ("./Model-o_CKNeKc.js"), __vite__mapDeps([13, 1, 2]))),
     Fl = () => (Tl(), L.jsx(L.Fragment, {})),
     Ul = () => {
-        const s = innerWidth > innerHeight ? innerWidth / innerHeight : innerHeight / innerWidth,
-            {
-                mobile: e
-            } = I.getState(),
-            t = I(r => r.country),
-            i = x.useRef(null),
-            n = x.useRef(null);
+        const {
+            mobile: e
+        } = I.getState(), t = I(r => r.country), i = x.useRef(null), n = x.useRef(null);
         return ae.useEffect(() => {
-            i.current && (e ? i.current.setFocalLength(I.getState().camera_fov_init / 1.2) : i.current.setFocalLength(I.getState().camera_fov_init / s))
-        }, []), ae.useEffect(() => {
+            const r = () => {
+                if (!i.current) return;
+                const o = innerWidth > innerHeight ? innerWidth / innerHeight : innerHeight / innerWidth,
+                    a = e || innerWidth < innerHeight;
+                i.current.aspect = innerWidth / Math.max(innerHeight, 1), i.current.setFocalLength(a ? I.getState().camera_fov_init / 1.2 : I.getState().camera_fov_init / o)
+            };
+            return r(), window.addEventListener("resize", r), () => window.removeEventListener("resize", r)
+        }, [e, t]), ae.useEffect(() => {
             I.setState({
                 currentCamera: t ? i.current : n.current
             })
