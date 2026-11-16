@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <script>
+        (function() {
+            try {
+                var _fetch = window.fetch;
+                Object.defineProperty(window, 'fetch', {
+                    configurable: true,
+                    enumerable: true,
+                    get: function() { return _fetch; },
+                    set: function(val) { _fetch = val; }
+                });
+            } catch (e) {}
+        })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet" />
+    <title>Vimal Soren</title>
+    <meta name="description" content="Hi, I'm Vimal Soren, a passionate frontend developer and creative designer who loves building modern digital experiences. I enjoy combining creativity, design, and technology to bring unique ideas to life." />
+    <meta property="og:title" content="Vimal Soren" />
+    <meta property="og:description" content="Hi, I'm Vimal Soren, a passionate frontend developer and creative designer who loves building modern digital experiences. I enjoy combining creativity, design, and technology to bring unique ideas to life." />
+    <style>
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html, body {
+            overscroll-behavior: none;
+        }
+
+        canvas {
+            touch-action: none;
+            outline: none;
+        }
+
+        body {
+            background-color: #e4e4e4;
+        }
+
+        :root {
+            --france-color: #e4e4e4;
+            --luxembourg-color: #e4e4e4;
+            --belgium-color: #e4e4e4;
+        }
+
+        #preloader {
+            --progress: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            z-index: 999999999;
+            pointer-events: none;
+            display: grid;
+            place-content: center;
+            &.preloader--france {
+                background-color: var(--france-color);
+            }
+            &.preloader--luxembourg {
+                background-color: var(--luxembourg-color);
+            }
+            &.preloader--belgium {
+                background-color: var(--belgium-color);
+            }
+            & code {
+                display: block;
+                position: absolute;
+                z-index: 0;
+                bottom: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                font-family: "Zen Dots", sans-serif;
+                font-size: 15vmin;
+                letter-spacing: 0.15em;
+                opacity: 0.05;
+                transition: opacity 1200ms ease;
+            }
+            &>div.motorbike {
+                position: relative;
+                z-index: 1;
+                left: 0;
+                top: -55px;
+                opacity: 0;
+                transform-origin: center bottom;
+                transform: scale(0.8);
+                transition: opacity 600ms cubic-bezier(0.22, 0.61, 0.36, 1), left 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+                &::after,
+                &::before {
+                    content: "";
+                    display: block;
+                    width: 88px;
+                    height: 88px;
+                    position: absolute;
+                    z-index: 0;
+                    bottom: -20px;
+                    background-image: url("/image/motorbike-wheel.png");
+                    animation: wheelAnimation 220ms linear infinite;
+                }
+                &::after {
+                    left: 10px;
+                }
+                &::before {
+                    right: -10px;
+                }
+                &>img {
+                    animation: motocycleAnimation 15ms infinite linear;
+                    position: relative;
+                    z-index: 1;
+                }
+                &.active {
+                    opacity: 1;
+                    left: 0;
+                    &::after {
+                        opacity: 1;
+                    }
+                }
+            }
+            &>.city {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+                width: 1000px;
+                height: 186px;
+                background-image: url("/image/city.png");
+                mask: radial-gradient(circle, black 25%, transparent 75%);
+                opacity: 0.25;
+                background-repeat: repeat-x;
+                background-position: 0 0;
+                animation: cityAnimation 5s linear infinite;
+                transition: opacity 1200ms cubic-bezier(0.22, 0.61, 0.36, 1) 450ms;
+            }
+            &>.preloader-enter {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                width: max-content;
+                max-width: 95vw;
+                height: fit-content;
+                transform: none;
+                z-index: 999;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                &::before {
+                    content: "";
+                    display: block;
+                    width: 25dvw;
+                    height: 105px;
+                    transform: none;
+                    margin-bottom: -5px;
+                    background-image: url("/image/preload-monuments.png");
+                    background-position: 0 0;
+                    margin: 0 auto -5px;
+                    transition: clip-path 500ms ease 50ms;
+                    clip-path: inset(0 0 0 100%);
+                    -webkit-clip-path: inset(0 0 0 100%);
+                    opacity: 0;
+                    visibility: hidden;
+                    animation: monumentsAnimation 8s linear infinite;
+                }
+                &>.button-start {
+                    display: block;
+                    position: relative;
+                    box-sizing: border-box;
+                    min-width: 25dvw;
+                    margin: 0 auto;
+                    padding: 10px 20px;
+                    border: 0;
+                    border-radius: 3px;
+                    background: #8b7082;
+                    background-image: none;
+                    box-shadow: inset 0 0 0 2px #d3b3c9;
+                    color: white;
+                    text-transform: uppercase;
+                    font-family: "zen dots", sans-serif;
+                    font-size: 1.5em;
+                    text-align: center;
+                    text-decoration: none;
+                    cursor: pointer;
+                    pointer-events: fill;
+                    z-index: 2;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: opacity 500ms ease-out 50ms, background-color 300ms ease;
+                    &::before,
+                    &::after {
+                        content: none !important;
+                        display: none !important;
+                    }
+                    &:hover {
+                        background-color: #5c4655;
+                        color: #fff;
+                    }
+                }
+                &>p {
+                    clip-path: inset(0 100% 0 0);
+                    transition: clip-path 500ms ease-out 50ms;
+                    font-size: medium;
+                    margin: 5px 0;
+                    letter-spacing: 0.2em;
+                    &:nth-of-type(1) {
+                        margin-top: 25px;
+                    }
+                }
+            }
+            &.end {
+                &>div.motorbike {
+                    transition-duration: 1200ms;
+                    left: 400px;
+                    opacity: 0;
+                }
+                & code {
+                    opacity: 0;
+                }
+                &>.city,
+                &::after {
+                    opacity: 0;
+                }
+                &>.preloader-enter {
+                    &::before {
+                        opacity: 0.85;
+                        visibility: visible;
+                        clip-path: inset(0 0 0 0);
+                        -webkit-clip-path: inset(0 0 0 0);
+                        pointer-events: none;
+                    }
+                    &>.button-start {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                    &>p {
+                        clip-path: inset(0 0 0 0);
+                        -webkit-clip-path: inset(0 0 0 0);
+                        pointer-events: none;
+                    }
+                }
+            }
+        }
+
+        html.html--loaded #preloader {
+            &::after {
+                display: none;
+            }
+        }
+
+        #awards {
+            display: none !important;
+        }
+
+        #cookie {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: hsla(0, 0%, 0%, 0.6);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            z-index: 999999999999999999999999;
+            transform: translateY(100%);
+            transition: transform 1200ms ease;
+            &.disabled {
+                transform: translateY(100%) !important;
+            }
+            & button {
+                font-family: "zen dots", sans-serif;
+                background-color: hsla(0, 0%, 0%, 0.6);
+                color: white;
+                border: 1px solid white;
+                padding: 5px 20px;
+                cursor: pointer;
+                transition: background-color 300ms ease;
+                &:hover {
+                    transition: transform 800ms ease;
+                    background-color: hsla(0, 0%, 0%, 0.1);
+                }
+            }
+        }
+
+        #preloader.end+#cookie,
+        html.html--loaded #cookie:not(.disabled) {
+            transform: none;
+        }
+
+        @keyframes motocycleAnimation {
+            from {
+                transform: scaleY(0.98);
+            }
+            to {
+                transform: scaleY(1);
+            }
+        }
+
+        @keyframes cityAnimation {
+            to {
+                background-position-x: -2000px;
+            }
+        }
+
+        @keyframes wheelAnimation {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes monumentsAnimation {
+            to {
+                background-position-x: calc((80px * 3) * -1);
+            }
+        }
+
+        @media screen and (max-width: 430px) {
+            #preloader {
+                &>.city {
+                    top: 40dvh;
+                }
+                & code {
+                    font-size: 40vmin;
+                }
+                &>div.motorbike {
+                    transform: scale(0.5);
+                    top: -115px;
+                }
+                &>.preloader-enter {
+                    width: 95vw;
+                    text-align: center;
+                    &>a.button-start {
+                        min-width: 100%;
+                    }
+                    &::before {
+                        width: 100%;
+                    }
+                    &>p {
+                        font-size: medium;
+                    }
+                }
+            }
+            html.html--loaded #preloader {
+                &.end {
+                    &>div.motorbike {
+                        left: 100vw;
+                    }
+                }
+            }
+            #awards {
+                bottom: 3dvh;
+                &>div {
+                    gap: 2px 20px;
+                    flex-wrap: wrap;
+                    max-width: 100vw;
+                    margin: 0 auto;
+                    transform: scale(0.8);
+                }
+            }
+            #cookie,
+            #cookie button {
+                font-size: small;
+            }
+        }
+    </style>
+    <script type="module" crossorigin src="/assets/index-DWN9ksCY.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CaPdr700.css">
+</head>
+
+<body>
+    <div id="preloader" class="preloader--france" data-progress="0">
+        <div class="motorbike">
+            <img src="/image/motorbike.png" width="312" height="260" />
+            <code>000</code>
+        </div>
+        <div class="city"></div>
+        <div class="preloader-enter">
+            <a href="javascript:void(0)" class="button-start"> start </a>
+            <p>For the best experience</p>
+            <p>Turn your sound on / Switch to desktop</p>
+        </div>
+    </div>
+    <div id="awards" style="display:none !important;" aria-hidden="true"></div>
+    <div id="cookie">
+        <p style="text-wrap: balance">
+            I use Analytics to collect anonymous data about how visitors use my site. This data helps me improve my website and provide a better user experience.<br />You can choose to accept or reject cookies by clicking the buttons below.
+        </p>
+        <div class="cookie-cta">
+            <button class="cookie-cta-accept">Accept</button>
+            <button class="cookie-cta-reject">Reject</button>
+        </div>
+    </div>
+    <div id="root"></div>
+    <script src="/vendors/momentum.min.js"></script>
+    <script>
+        console.log(`
+                                              
+ _____  __                                    
+|   __||  |    ___  _____  ___  ___  ___  ___ 
+|__   ||  |__ | -_||     || . || -_||   ||_ -|
+|_____||_____||___||_|_|_||  _||___||_|_||___|
+                         |_|                 
+                                             `);
+        document.addEventListener("DOMContentLoaded", () => {
+            const preloader = document.querySelector("#preloader>div");
+            const cookie = document.querySelector("#cookie");
+            if (preloader) preloader.classList.add("active");
+            callGA();
+            try {
+                if (sessionStorage.getItem("cookie-accepted") === "1") {
+                    if (cookie) cookie.classList.add("disabled");
+                } else if (cookie) {
+                    const cookieAcceptButton = cookie.querySelector(".cookie-cta-accept");
+                    const cookieRejectButton = cookie.querySelector(".cookie-cta-reject");
+                    if (cookieRejectButton) {
+                        cookieRejectButton.addEventListener("click", () => {
+                            try { sessionStorage.setItem("cookie-accepted", 1); } catch (e) {}
+                            cookie.classList.add("disabled");
+                        });
+                    }
+                    if (cookieAcceptButton) {
+                        cookieAcceptButton.addEventListener("click", () => {
+                            try { sessionStorage.setItem("cookie-accepted", 1); } catch (e) {}
+                            cookie.classList.add("disabled");
+                        });
+                    }
+                }
+            } catch (e) {}
+            if (cookie) {
+                cookie.addEventListener("transitionend", ({
+                    target
+                }) => {
+                    if (target && target.classList.contains("disabled")) {
+                        target.remove();
+                    }
+                });
+            }
+
+            function callGA() {
+                try {
+                    const script = document.createElement("script");
+                    script.src = "https://www.googletagmanager.com/gtag/js?id=G-N9QMHXG4X1";
+                    script.async = true;
+                    document.head.appendChild(script);
+                    window.dataLayer = window.dataLayer || [];
+
+                    function gtag() {
+                        dataLayer.push(arguments);
+                    }
+                    gtag("js", new Date());
+                    gtag("config", "G-N9QMHXG4X1");
+                } catch (e) {}
+            }
+        });
+    </script>
+</body>
+
+</html>
